@@ -9,10 +9,30 @@
 	</head>
 
 	<body>
-		<div id="mainChessBoard">
+		<div id="mainGrid">
 		</div>
 
-		<p id="demo">Start Moving</p>
+		<form>
+			<label for="creatureNum">Creatures (1-1000):</label>
+			<input id="creatureNum" type="number" min="1" max="1000" />
+			<br>
+			<label for="monsterNum">Monsters (0-100):</label>
+			<input id="monsterNum" type="number" min="0" max="100" />
+			<br>
+			<label for="updateSpeed">Update Speed (100 - 10000ms):</label>
+			<input id="updateSpeed" type="number" min="100" max="10000" />
+			<br>
+			<label for="tickCount">Number of cycles (10 - 1000):</label>
+			<input id="tickCount" type="number" min="10" max="1000" />
+			<br>
+			<input TYPE="button" onClick="history.go(0)" VALUE="Refresh">
+			<input TYPE="button" id="generate" onClick="" VALUE="Generate">
+			<input TYPE="button" id="next" onClick="" VALUE="Next">
+			<input TYPE="button" id="simulate" onClick="" VALUE="Simulate">
+			<input TYPE="button" id="stop" onClick="" VALUE="Stop">
+			<br>
+			<input type="checkbox" id="automate" value="true">Automate
+		</form>
 
 		<script type="text/javascript" src="board.js"></script>
 	</body>
