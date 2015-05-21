@@ -1,23 +1,125 @@
-#mainGrid
-{
-    width:160px;
-    height:160px;
-    border:1px solid black;
+html{ 
+	width: 100%; 
+	height: 100%;
 }
 
-div
-{
- width:20px;
- height:20px;
- float:left;
+body{ 
+	margin: auto ;
+	background: #FF7918;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #292929;
+	width: 100%;
+	height:100%;
+	margin: 0;
 }
 
-#creatureNum
-{
-	background-color: yellow;
+a, a:link, a:active, a:visited{
+	font-weight: bold;
+	color: #999999;
 }
 
-#monsterNum
-{
-	background-color: blue;
+a:hover{ 
+	color: #0080FF;
+}
+
+h1{ 
+	text-align: center;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+
+#cat:active {
+  top:3px;
+}
+
+
+ground-position: 74% 0%;
+}
+
+@-webkit-keyframes spin {
+  from {
+	-webkit-transform: rotate(0deg);
+  }
+  to {
+	-webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  from {
+	-moz-transform: rotate(0deg);
+  }
+  to {
+	-moz-transform: rotate(360deg);
+  }
+}
+
+#spiral {
+	z-index:-1;
+
+	animation-name: spin;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-duration: 26s;
+	animation-play-state: paused;
+
+	-webkit-animation-name: spin;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-duration: 26s;
+	-webkit-animation-play-state: paused;
+
+	-moz-animation-name: spin;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+	-moz-animation-duration: 26s;
+	-moz-animation-play-state: paused
+}
+
+#spiral.spin {
+	animation-play-state: running;
+	-webkit-animation-play-state: running;
+	-moz-animation-play-state: running
+}
+
+/* MUSIC PLAYER STUFF */
+#jp_container {
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+}
+
+.demo-container {
+	border: 1px solid #4C2407;
+	padding:0 20px;
+	font-family: "Myriad Pro Regular","Trebuchet MS";
+}
+
+.demo-container a, .demo-container a:link, .demo-container a:visited, .demo-container a:hover, .demo-container a:focus, .demo-container a:active {
+	color: #DBD3CD;
+}
+
+.demo-container ul {
+	list-style-type:none;
+	padding:0;
+	margin:1em 0;
+	width:100%;
+	overflow:hidden;
+}
+
+.demo-container ul span {
+	color: #A0A600;
+}
+
+.demo-container li {
+	float:left;
+	margin-right:1em;
+}
+
+.demo-container p span.track-name {
+	color: #CC0090;
 }

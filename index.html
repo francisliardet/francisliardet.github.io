@@ -2,38 +2,87 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>COSC 343 Assignment 2</title>
+		<title>Francis Liardet</title>
 		<link rel=stylesheet type="text/css" href="style.css">
-		<script src="jquery-1.11.2.js"></script>
+		<script src="ai/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="script/jquery.min.js"></script>
+		<script type="text/javascript" src="script/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="script/musicPlayer.js"></script>
 
 	</head>
 
 	<body>
-		<div id="mainGrid">
+		<a href="./ai/index.html">COSC343 Assignment</a>
+		<a href="./game/webbuild.html">COSC360 Game Project</a>
+
+	</div>
+
+		<body>
+			<table width="100%" style="height:100%;">
+				<tr>
+					<td align="center" valign="middle" style="vertical-align: middle; position: relative;">
+						<div style="position: relative; width: 840px; height: 840px; overflow: visible;" id="container">
+							<div style="position: relative; width: 840px; height: 840px; overflow: hidden;">
+								<img src="avatar.png" alt="Caaat" id="placeholder" align="middle" style="display: block;" />
+
+								<script type="text/javascript">
+									document.getElementById('placeholder').style.display='none';
+									document.write('<img src="spiral.jpg" alt="Caaat" id="spiral" align="middle" style="display: block; position: absolute;" />');
+									document.write('<img src="avatar_shadow.png" alt="Caaat" id="shadow" align="middle" style="display: block; position: absolute;" />');
+									document.write('<img src="avatar.png" alt="Caaat" id="cat" onclick="playPause();" align="middle" style="display: block; position: absolute;" />');
+								</script>
+							
+							</div>
+						</div>
+						<script type="text/javascript">					  
+						  (function() {
+							$("#cat").hover(
+							  function(){
+								$("#spiral").addClass("hoverclass");
+							  },
+							  function(){
+								$("#spiral").removeClass("hoverclass");
+							  });
+						  });
+						</script>
+					</td>
+				</tr>
+			</table>		
+		</body>
+
+		<div id="jquery_jplayer"></div>
+
+		<div id="jp_container" class="demo-container">
+			<ul>
+				<li><span>Select a track : </span></li>
+				<li><a href="./music/wandering_eye.mp3" class="track track-default">Wandering Eye</a></li>
+				<li> | </li>
+				<li><a href="./music/eminence_front.mp3" class="track">Eminence Front</a></li>
+				<li> | </li>
+				<li><a href="./music/hopeless_wanderer.mp3" class="track">Hopeless Wanderer</a></li>
+				<li> | </li>
+				<li><a href="./music/neon_bible.mp3" class="track">Neon Bible</a></li>
+			</ul>
+			<p>
+				<span class="play-state"></span> :
+				<span class="track-name">nothing</span>
+				at <span class="extra-play-info"></span>
+				of <span class="jp-duration"></span>, which is
+				<span class="jp-current-time"></span>
+			</p>
+			<ul>
+				<li><a class="jp-play" href="#">Play</a></li>
+				<li><a class="jp-pause" href="#">Pause</a></li>
+				<li><a class="jp-stop" href="#">Stop</a></li>
+			</ul>
+			<ul>
+				<li>volume :</li>
+				<li><a class="jp-mute" href="#">Mute</a></li>
+				<li><a class="jp-unmute" href="#">Unmute</a></li>
+				<li><a class="jp-volume-bar" href="#">|&lt;----------&gt;|</a></li>
+				<li><a class="jp-volume-max" href="#">Max</a></li>
+			</ul>
 		</div>
 
-		<form>
-			<label for="creatureNum">Creatures (1-1000):</label>
-			<input id="creatureNum" type="number" min="1" max="1000" />
-			<br>
-			<label for="monsterNum">Monsters (0-100):</label>
-			<input id="monsterNum" type="number" min="0" max="100" />
-			<br>
-			<label for="updateSpeed">Update Speed (100 - 10000ms):</label>
-			<input id="updateSpeed" type="number" min="100" max="10000" />
-			<br>
-			<label for="tickCount">Number of cycles (10 - 1000):</label>
-			<input id="tickCount" type="number" min="10" max="1000" />
-			<br>
-			<input TYPE="button" onClick="history.go(0)" VALUE="Refresh">
-			<input TYPE="button" id="generate" onClick="" VALUE="Generate">
-			<input TYPE="button" id="next" onClick="" VALUE="Next">
-			<input TYPE="button" id="simulate" onClick="" VALUE="Simulate">
-			<input TYPE="button" id="stop" onClick="" VALUE="Stop">
-			<br>
-			<input type="checkbox" id="automate" value="true">Automate
-		</form>
-
-		<script type="text/javascript" src="board.js"></script>
 	</body>
 </html>
