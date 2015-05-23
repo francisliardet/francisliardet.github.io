@@ -30,6 +30,9 @@ h1{
 	padding: 0;
 }
 
+#cat{
+	cursor: pointer;
+}
 
 #cat:active {
   top:3px;
