@@ -21,3 +21,8 @@ div
 {
 	background-color: blue;
 }
+
+a.footer {
+	font-size: small;
+	margin: auto;
+}
