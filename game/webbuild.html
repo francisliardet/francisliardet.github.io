@@ -1,132 +1,195 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Unity Web Player | Lockdown</title>
-		<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
-		<script type="text/javascript">
-		<!--
+<head>  
+	<title>Lockdown</title>
+	<meta charset="iso-8859-2">
+	        
+	<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
+	<script type="text/javascript">
+	<!--
 		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
 		if (document.location.protocol == 'https:')
-			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
 		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
-		-->
-		</script>
-		<script type="text/javascript">
-		<!--
-			var config = {
-				width: 1440, 
-				height: 900,
-				params: { enableDebugging:"0" }
-				
-			};
-			var u = new UnityObject2(config);
+	-->
+	</script>
+
+	<script type="text/javascript">
+	<!--
 			
-			jQuery(function() {
+		var bottomStripHeight = 40;			
+	   	var myWidth = 0, myHeight = 0, borderSize = 0;
+			
+		var config = {
+			width: "100%", 
+			height: "100%",
+			params: { enableDebugging:"0" }
+		};
+		config.params["disableContextMenu"] = true;
+		var u = new UnityObject2(config);
+				
+		jQuery(function() {
+			var $missingScreen = jQuery("#unityPlayer").find(".missing");
+			var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+			$missingScreen.hide();
+			$brokenScreen.hide();
 
-				var $missingScreen = jQuery("#unityPlayer").find(".missing");
-				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
-				$missingScreen.hide();
-				$brokenScreen.hide();
-
-				u.observeProgress(function (progress) {
-					switch(progress.pluginStatus) {
-						case "broken":
-							$brokenScreen.find("a").click(function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								u.installPlugin();
-								return false;
-							});
-							$brokenScreen.show();
-						break;
-						case "missing":
-							$missingScreen.find("a").click(function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								u.installPlugin();
-								return false;
-							});
-							$missingScreen.show();
-						break;
-						case "installed":
-							$missingScreen.remove();
-						break;
-						case "first":
-						break;
-					}
-				});
-				u.initPlugin(jQuery("#unityPlayer")[0], "webbuild.unity3d");
+			u.observeProgress(function (progress) {
+				switch(progress.pluginStatus) {
+					case "broken":
+						$brokenScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$brokenScreen.show();
+					break;
+					case "missing":
+						$missingScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$missingScreen.show();
+					break;
+					case "installed":
+						$missingScreen.remove();
+					break;
+					case "first":
+					break;
+				}
 			});
-		-->
-		</script>
-		<style type="text/css">
-		<!--
-		body {
-			font-family: Helvetica, Verdana, Arial, sans-serif;
-			background-color: black;
-			color: white;
-			text-align: center;
+			u.initPlugin(jQuery("#unityPlayer")[0], "webbuild.unity3d");
+		});
+				
+		function reportSize() {
+			  myWidth = 0, myHeight = 0;
+			  if( typeof( window.innerWidth ) == 'number' ) {
+			    //Non-IE
+			    myWidth = window.innerWidth;
+			    myHeight = window.innerHeight;
+			  } else {
+			    if( document.documentElement &&
+			        ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+			      //IE 6+ in 'standards compliant mode'
+			      myWidth = document.documentElement.clientWidth;
+			      myHeight = document.documentElement.clientHeight;
+			    } else {
+			      if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+			        //IE 4 compatible
+			        myWidth = document.body.clientWidth;
+			        myHeight = document.body.clientHeight;
+			      }
+			    }
+			  }
 		}
+
+
+		function calculatewindow() {
+			reportSize();
+			myHeight -= bottomStripHeight;
+			document.getElementById("content").style.height = myHeight + 'px';
+			document.getElementById("unityPlayer").style.height = myHeight + 'px';
+		}	
+		
+		
+		window.onload = function (){calculatewindow();detectLang();}
+		window.onresize = function (){calculatewindow();}	
+			
+			
+	-->
+	</script>
+	<style type="text/css">
+	<!--
+		/* hide from ie on mac \*/
+		html {
+		height:100%;
+		margin: 0px;
+		padding: 0px;
+		overflow: hidden;
+		}
+			/* end hide */
+		body {
+		height:100%;
+		font-family: Helvetica, Verdana, Arial, sans-serif;
+		background-color: black;
+		color: white;
+		text-align: center;
+		font-size: medium;
+		border:0;
+		padding: 0;
+		margin: 0;
+		overflow:hidden;
+		}
+		
 		a:link, a:visited {
-			color: #bfbfbf;
+			color: white;
 		}
 		a:active, a:hover {
-			color: #bfbfbf;
+			color: #666;
 		}
-		p.header {
-			font-size: small;
+		
+		div#content {
+		width: 100%;
+		height: 100%;
+		border:0;
+		padding: 0;
+		margin: 0;
+		overflow:hidden;
 		}
-		p.header span {
-			font-weight: bold;
-		}
-		p.footer {
-			font-size: x-small;
-		}
-		div.content {
-			margin: auto;
-			width: 1440px;
-		}
-		div.broken,
+
 		div.missing {
 			margin: auto;
 			position: relative;
 			top: 50%;
 			width: 193px;
 		}
-		div.broken a,
 		div.missing a {
 			height: 63px;
 			position: relative;
 			top: -31px;
 		}
-		div.broken img,
 		div.missing img {
 			border-width: 0px;
 		}
-		div.broken {
-			display: none;
-		}
 		div#unityPlayer {
 			cursor: default;
-			height: 900px;
-			width: 1440px;
+			width: 100%;
+			height: 100%;
 		}
-		-->
-		</style>
-	</head>
-	<body>
-		<a class="header" href="../index.html">Back to main page</a>
-		<p class="header"><span>Unity Web Player | </span>Lockdown</p>
-		<div class="content">
-			<div id="unityPlayer">
-				<div class="missing">
-					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
-					</a>
-				</div>
+
+		.header {
+			font-size: small;
+		}
+		
+		div.footer {
+			width: 100%;
+			height: 20px;
+			background-color: black;
+			padding: 4px;
+			margin: 0;
+			color: white;
+		}
+			
+	-->
+	</style>
+</head>
+<body>
+    <div id="content">
+		<div id="unityPlayer">
+			<div class="missing">
+				<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+					<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+				</a>
 			</div>
 		</div>
-		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
-	</body>
+	</div>
+
+    <div class="footer" id="info1">
+        <a class="header" href="../index.html">Back to main page</a>
+    </div>
+
+</body>
 </html>
