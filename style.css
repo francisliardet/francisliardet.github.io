@@ -38,10 +38,6 @@ h1{
   top:3px;
 }
 
-
-ground-position: 74% 0%;
-}
-
 @-webkit-keyframes spin {
   from {
 	-webkit-transform: rotate(0deg);
@@ -79,13 +75,13 @@ ground-position: 74% 0%;
 	-moz-animation-iteration-count: infinite;
 	-moz-animation-timing-function: linear;
 	-moz-animation-duration: 26s;
-	-moz-animation-play-state: paused
+	-moz-animation-play-state: paused;
 }
 
 #spiral.spin {
 	animation-play-state: running;
 	-webkit-animation-play-state: running;
-	-moz-animation-play-state: running
+	-moz-animation-play-state: running;
 }
 
 /* MUSIC PLAYER STUFF */
