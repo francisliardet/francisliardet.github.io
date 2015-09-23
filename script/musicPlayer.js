@@ -1,18 +1,30 @@
 //<![CDATA[
 
+var isPlaying = false;
+
 function playPause(){
 	var jp = $('#jquery_jplayer');
 	var jpData = jp.data('jPlayer');
 	if(jpData.status.paused){
-		jp.jPlayer("play");
-		//startAnim();
-		$("#spiral").toggleClass("spin");
+		play();
 	}
 	else{
-		jp.jPlayer("pause");
-		//stopAnim();
-		$("#spiral").toggleClass("spin");
+		pause();
 	}
+}
+
+function play(){
+	isPlaying = true;
+	$('#jquery_jplayer').jPlayer("play");
+	//startAnim();
+	$("#spiral").toggleClass("spin");
+}
+
+function pause(){
+	isPlaying = false;
+	$('#jquery_jplayer').jPlayer("pause");
+	//stopAnim();
+	$("#spiral").toggleClass("spin");
 }
 
 $(document).ready(function(){
@@ -25,7 +37,7 @@ $(document).ready(function(){
 
 	// Some options
 	var	opt_play_first = false, // If true, will attempt to auto-play the default track on page loads. No effect on mobile devices, like iOS.
-		opt_auto_play = true, // If true, when a track is selected, it will auto-play.
+		opt_auto_play = false, // If true, when a track is selected, it will auto-play.
 		opt_text_playing = "Now playing", // Text when playing
 		opt_text_selected = "Track selected"; // Text when not playing
 
@@ -56,6 +68,7 @@ $(document).ready(function(){
 			my_playState.text(opt_text_selected);
 		},
 		ended: function(event) {
+			pause();
 			my_playState.text(opt_text_selected);
 		},
 		swfPath: "../../dist/jplayer",
@@ -70,7 +83,10 @@ $(document).ready(function(){
 		my_jPlayer.jPlayer("setMedia", {
 			mp3: $(this).attr("href")
 		});
-		if((opt_play_first && first_track) || (opt_auto_play && !first_track)) {
+
+		var jpData = $('#jquery_jplayer').data('jPlayer');
+
+		if((opt_play_first && first_track) || (opt_auto_play && !first_track) || (isPlaying && !first_track)) {
 			my_jPlayer.jPlayer("play");
 		}
 		first_track = false;
