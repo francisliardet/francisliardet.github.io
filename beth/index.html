@@ -303,33 +303,77 @@
     <script>
     function initMap() {
         var mapDiv = document.getElementById('map');
+        
         var centre = {lat: -45.098450, lng: 170.970351};
         var dunedin = {lat: -45.874130, lng: 170.503643};
         var palmerston = {lat: -45.484897, lng: 170.714985};
+        
         var hasClicked = false;
+        var image = 'img/woman-head.png';
+
+        var customMapType = new google.maps.StyledMapType([
+              {
+                stylers: [
+                  {hue: '#ffb3d9'},
+                  {visibility: 'simplified'},
+                  {gamma: 0.5},
+                  {weight: 0.5}
+                ]
+              },
+              {
+                elementType: 'labels',
+                //stylers: [{visibility: 'off'}]
+              },
+              {
+                featureType: 'water',
+                stylers: [{color: '#ffb3d9'}]
+              }
+        ], {
+            name: 'Custom Style'
+        });
+        var customMapTypeId = 'custom_style';
 
         var map = new google.maps.Map(mapDiv, {
           center: centre,
-          zoom: 7
+          zoom: 7,
+          disableDefaultUI: true,
+          scrollwheel: false,
+          zoomControl: true,
+          mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+          }
         });
+
+        map.mapTypes.set(customMapTypeId, customMapType);
+        map.setMapTypeId(customMapTypeId);
+
 
         var marker = new google.maps.Marker({
             position: centre,
             map: map,
-            title: 'Bethany Robertson  ph: 027 240 9749'
+            title: 'Bethany Robertson  ph: 027 240 9749',
+            icon: image
         });
 
         var dunedinMarker = new google.maps.Marker({
             position: dunedin,
             map: map,
-            title: 'Bethany Robertson  ph: 027 240 9749'
+            title: 'Bethany Robertson  ph: 027 240 9749',
+            icon: image
         });
 
         var palmerstonMarker = new google.maps.Marker({
             position: palmerston,
             map: map,
-            title: 'Bethany Robertson  ph: 027 240 9749'
+            title: 'Bethany Robertson  ph: 027 240 9749',
+            icon: image
         });
+
+        map.addListener('click', function() {
+            //map.setOptions({scrollwheel: true});
+            map.setOptions({scrollwheel: true});
+        });
+
 
 
         marker.addListener('click', function() {
