@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <img src="img/logo_transparent.png" alt="PROJECT U - In-Home Personal Training">
+                        <img src="img/logo_background_white.png" alt="PROJECT U - In-Home Personal Training">
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
@@ -122,44 +122,6 @@
         <!-- /.container -->
 
     </div>
-    <!-- /.intro-header -->
-    <div class="container">
-        <div class="row intro-tables">
-            <div class="col-md-4">
-                <div class="intro-table intro-table-1-hover">
-                    <h5 class="white heading hide-hover">Premium Membership</h5>
-                    <div class="bottom">
-                            <h4 class="white heading small-heading no-margin regular">Register Today</h4>
-                            <h4 class="white heading small-pt">20% Discount</h4>
-                            <a href="#" class="btn btn-white-fill expand">Register</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="intro-table intro-table-2-hover">
-                    <h5 class="white heading hide-hover">Premium Membership</h5>
-                    <div class="bottom">
-                            <h4 class="white heading small-heading no-margin regular">Register Today</h4>
-                            <h4 class="white heading small-pt">20% Discount</h4>
-                            <a href="#" class="btn btn-white-fill expand">Register</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="intro-table intro-table-3-hover">
-                    <h5 class="white heading hide-hover">Premium Membership</h5>
-                    <div class="bottom">
-                            <h4 class="white heading small-heading no-margin regular">Register Today</h4>
-                            <h4 class="white heading small-pt">20% Discount</h4>
-                            <a href="#" class="btn btn-white-fill expand">Register</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Page Content -->
 
 	<a  id="about"></a>
@@ -171,10 +133,12 @@
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">PROJECT<span class="pink">U</span>:<br>The gym that comes to you</h2>
-                    <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+                    <p class="lead">We here at PROJECT<span class="pink">U</span> specialise in In-Home training, for a more personal and stress-free excersise experience.</p>
+                    <p class="lead">Our trainers are very supportive, and will design a program exactly tailored to your own needs and personal goals.</p>
+                    <p class="lead">Lead a busy lifestyle? Don't feel comfortable working out at the gym? Need a little motivation to get you active? then PROJECT<span class="pink">U</span> is for you!</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/ipad.png" alt="">
+                    <img class="img-responsive" src="img/pu-car-pink.png" alt="">
                 </div>
             </div>
 
@@ -314,7 +278,7 @@
         var customMapType = new google.maps.StyledMapType([
               {
                 stylers: [
-                  {hue: '#ffb3d9'},
+                  //{hue: '#ffb3d9'},
                   {visibility: 'simplified'},
                   {gamma: 0.5},
                   {weight: 0.5}
@@ -326,7 +290,7 @@
               },
               {
                 featureType: 'water',
-                stylers: [{color: '#ffb3d9'}]
+                //stylers: [{color: '#ffffff'}]
               }
         ], {
             name: 'Custom Style'
@@ -352,21 +316,21 @@
             position: centre,
             map: map,
             title: 'Bethany Robertson  ph: 027 240 9749',
-            icon: image
+            //icon: image
         });
 
         var dunedinMarker = new google.maps.Marker({
             position: dunedin,
             map: map,
             title: 'Bethany Robertson  ph: 027 240 9749',
-            icon: image
+            //icon: image
         });
 
         var palmerstonMarker = new google.maps.Marker({
             position: palmerston,
             map: map,
             title: 'Bethany Robertson  ph: 027 240 9749',
-            icon: image
+            //icon: image
         });
 
         map.addListener('click', function() {
