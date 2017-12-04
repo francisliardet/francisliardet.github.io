@@ -1,2 +1,13 @@
 plugins:
   - jekyll-seo-tag
+
+title: Francis Liardet
+description: Francis Liardet's personal electronic junk pile
+url: francisliardet.com
+author: Francis Liardet
+
+twitter:
+  username: francisjl
+ 
+logo: /avatar_icon.png
+lang: en_US
