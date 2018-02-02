@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<title>Francis Liardet</title>
 		<link rel=stylesheet type="text/css" href="style.css">
-		<script src="ai/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="script/jquery.min.js"></script>
 		<script type="text/javascript" src="script/jquery.jplayer.min.js"></script>
 		<script type="text/javascript" src="script/musicPlayer.js"></script>
@@ -20,6 +19,14 @@
 		  "homeLocation": "Dunedin, New Zealand",
 		  "email": "francisliardet@gmail.com"
 		}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
+					$(this).toggleClass('open');
+				});
+			});
 		</script>
 		
 		
