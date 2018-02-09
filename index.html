@@ -33,47 +33,54 @@
 		
 	</head>
 
+	<!--
 	<div id="nav-icon3">
 		<span></span>
 		<span></span>
 		<span></span>
 		<span></span>
 	</div>
+	-->
 
-	<div id="info-box">
-		<div id="info-box-content">
-			<div>
-				<h1> Francis Liardet </h1>
-				<p> 
-					<img src="img/profile-orange.png">
-					Currently living the dream at <a href="http://rocketwerkz.com/">RocketWerkz</a>, Dunedin.<br>
-					Enjoying making video games, music, and the odd bit of cooking.
-				</p>
+	<div id="info-container">
+		<div class="info-box">
+			<div class="info-box-content">
+				<div>
+					<h1> Francis Liardet </h1>
+					<p> 
+						<img src="img/profile-orange.png" alt="Francis Liardet">
+						Currently living the dream at <a href="http://rocketwerkz.com/">RocketWerkz</a>, Dunedin.<br>
+						Enjoying making video games, music, and the odd bit of cooking.
+					</p>
 
-				<div id="social-icons">
-					<a href="https://twitter.com/francisjl"><i class="fab fa-twitter fa-2x"></i></a>
-					<a href="https://www.facebook.com/francisliardet"><i class="fab fa-facebook-square fa-2x"></i></a>
-					<a href="https://github.com/francisliardet"><i class="fab fa-github fa-2x"></i></a>
-					<a href="https://www.linkedin.com/in/francis-liardet/"><i class="fab fa-linkedin fa-2x"></i></a>
-					<a href="https://steamcommunity.com/id/GJJISGANGSTA"><i class="fab fa-steam-square fa-2x"></i></a>
+					<div id="social-icons">
+						<a href="https://twitter.com/francisjl"><i class="fab fa-twitter fa-2x"></i></a>
+						<a href="https://www.facebook.com/francisliardet"><i class="fab fa-facebook-square fa-2x"></i></a>
+						<a href="https://github.com/francisliardet"><i class="fab fa-github fa-2x"></i></a>
+						<a href="https://www.linkedin.com/in/francis-liardet/"><i class="fab fa-linkedin fa-2x"></i></a>
+						<a href="https://steamcommunity.com/id/GJJISGANGSTA"><i class="fab fa-steam-square fa-2x"></i></a>
+						<a href="mailto:francisliardet@gmail.com"><i class="fas fa-envelope fa-2x"></i></a>
+					</div>
 				</div>
-			</div>
 
-			<div id="profile-img"></div>
+				<div id="profile-img"></div>
+			</div>
+		</div>
+
+		<div class="info-box" id="link-list">
+			<div class="info-box-content">
+
+				<a href="./ai/index.html">COSC343 Assignment</a>
+				<a href="./game/lockdown.html">Lockdown</a>
+				<a href="./game/rooftops.html">Rooftops Over London</a>
+				<a href="./game/toontown.html">ToonTown</a>
+
+			</div>
 		</div>
 	</div>
 
 	<body>
-		<a href="./ai/index.html">COSC343 Assignment</a>
-		<a href="./game/lockdown.html">Lockdown</a>
-		<a href="./game/rooftops.html">Rooftops Over London</a>
-		<a href="./game/survival.html">Survival Test</a>
-		<a href="./game/pong.html">Pong</a>
-		<a href="./game/toontown.html">ToonTown</a>
-
-	</div>
-
-		<body>
+		<div>
 			<table width="100%" style="height:100%;">
 				<tr>
 					<td align="center" valign="middle" style="vertical-align: middle; position: relative;">
@@ -104,7 +111,7 @@
 					</td>
 				</tr>
 			</table>		
-		</body>
+		</div>
 
 		<div id="jquery_jplayer"></div>
 
@@ -141,6 +148,5 @@
 				<li><a class="jp-volume-max" href="#">Max</a></li>
 			</ul>
 		</div>
-
 	</body>
 </html>

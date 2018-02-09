@@ -4,15 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | ToonTown</title>
-    <link rel="shortcut icon" href="ToonTown/TemplateData/favicon.ico">
-    <link rel="stylesheet" href="ToonTown/TemplateData/style.css">
-    <script src="ToonTown/TemplateData/UnityProgress.js"></script>  
-    <script src="ToonTown/Build/UnityLoader.js"></script>
+    <link rel="shortcut icon" href="toontown/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="toontown/TemplateData/style.css">
+	<link rel="stylesheet" href="../style.css">
+    <script src="toontown/TemplateData/UnityProgress.js"></script>  
+    <script src="toontown/Build/UnityLoader.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "ToonTown/Build/Builds.json", {onProgress: UnityProgress});
+      var gameInstance = UnityLoader.instantiate("gameContainer", "toontown/Build/Builds.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
+    <div style="width: 10%; margin: 4em auto">
+      <a href="toontown/toontown.zip"> Download Host<i class="fas fa-download fa-2x"></i></a>
+    </div>
+
     <div class="webgl-content">
       <div id="gameContainer" style="width: 960px; height: 600px"></div>
       <div class="footer">

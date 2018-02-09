@@ -30,6 +30,16 @@ a:hover{
 }
 
 
+
+
+
+
+
+
+
+
+
+
 #cat {
 	cursor: pointer;
 }
@@ -38,133 +48,94 @@ a:hover{
   top:3px;
 }
 
-@-webkit-keyframes spin {
-  from {
-	-webkit-transform: rotate(0deg);
-  }
-  to {
-	-webkit-transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes spin {
-  from {
-	-moz-transform: rotate(0deg);
-  }
-  to {
-	-moz-transform: rotate(360deg);
-  }
-}
-
 #spiral {
-	z-index:-1;
+  z-index:-1;
 
-	animation-name: spin;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-	animation-duration: 26s;
-	animation-play-state: paused;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 26s;
+  animation-play-state: paused;
 
-	-webkit-animation-name: spin;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-duration: 26s;
-	-webkit-animation-play-state: paused;
+  -webkit-animation-name: spin;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-duration: 26s;
+  -webkit-animation-play-state: paused;
 
-	-moz-animation-name: spin;
-	-moz-animation-iteration-count: infinite;
-	-moz-animation-timing-function: linear;
-	-moz-animation-duration: 26s;
-	-moz-animation-play-state: paused;
+  -moz-animation-name: spin;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -moz-animation-duration: 26s;
+  -moz-animation-play-state: paused;
 }
 
 #spiral.spin {
-	animation-play-state: running;
-	-webkit-animation-play-state: running;
-	-moz-animation-play-state: running;
-}
-
-/* MUSIC PLAYER STUFF */
-#jp_container {
-	margin-bottom: 2em;
-	margin-left: auto;
-	margin-right: auto;
-	width: 40%;
-}
-
-.demo-container {
-	border: 1px solid #4C2407;
-	padding:0 1.5em;
-	font-family: "Myriad Pro Regular","Trebuchet MS";
-}
-
-.demo-container a, .demo-container a:link, .demo-container a:visited, .demo-container a:hover, .demo-container a:focus, .demo-container a:active {
-	color: #DBD3CD;
-}
-
-.demo-container ul {
-	list-style-type: none;
-	padding:0;
-	margin:1em 0;
-	width:100%;
-	overflow: hidden;
-}
-
-.demo-container ul span {
-	color: #A0A600;
-}
-
-.demo-container li {
-	float:left;
-	margin-right:1em;
-}
-
-.demo-container p span.track-name {
-	color: #CC0090;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
 }
 
 
-#info-box {
-  position: relative;
-  margin: 3em auto;
-  padding: 1.5em;
 
+
+
+
+
+
+#info-container {
   display: block;
   height: auto;
   width: 50%;
+  position: relative;
+  margin: 3em auto;
+}
+
+.info-box {
+  margin: 1em;
+  padding: 1.5em;
   background: #d3531a;
   border-radius: 0.9em;
   opacity: 1;
 }
 
-#info-box img {
+.info-box img {
   max-width: 35%;
   float: right;
 }
 
 
-#info-box h1 {
+.info-box h1 {
   display: inline;
+  text-shadow: -1px -1px #d3531a;
 }
 
-#info-box-content {
+.info-box-content {
   border: 1.5em;
   padding: 2em;
-
-  
 
   background: #ffbe96;
   border-radius: 0.9em;
 }
 
-#info-box-content p {
+.info-box-content p {
   padding-top: 1em;
   padding-bottom: 2em;
 }
 
-#social-icons {
-  
+#link-list {
+  max-width: 35%;
 }
+
+
+
+
+
+
+
+
+
+
 
 /* Hamburger CSS */
 
@@ -174,10 +145,10 @@ a:hover{
 }
 
 #nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
-  width: 60px;
-  height: 45px;
+  width: 5em;
+  height: 3em;
   position: relative;
-  margin: 50px auto;
+  margin: 2em auto;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -247,3 +218,82 @@ a:hover{
   width: 0%;
   left: 50%;
 }
+
+
+
+
+@-webkit-keyframes spin {
+  from {
+  -webkit-transform: rotate(0deg);
+  }
+  to {
+  -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  from {
+  -moz-transform: rotate(0deg);
+  }
+  to {
+  -moz-transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* MUSIC PLAYER STUFF */
+#jp_container {
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.demo-container {
+  border: 1px solid #4C2407;
+  border-radius: 1em;
+  padding:0 1.5em;
+  font-family: "Myriad Pro Regular","Trebuchet MS";
+}
+
+.demo-container a, .demo-container a:link, .demo-container a:visited, .demo-container a:hover, .demo-container a:focus, .demo-container a:active {
+  color: #DBD3CD;
+}
+
+.demo-container ul {
+  list-style-type: none;
+  padding:0;
+  margin:1em 0;
+  width:100%;
+  overflow: hidden;
+}
+
+.demo-container ul span {
+  color: #A0A600;
+}
+
+.demo-container li {
+  float:left;
+  margin-right:1em;
+}
+
+.demo-container p span.track-name {
+  color: #CC0090;
+}
+
+
+
+
+/* Unity3D WebGL */
+
+.webgl-content * {border: 0; margin: 0; padding: 0}
+.webgl-content {position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
