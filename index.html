@@ -14,9 +14,9 @@
 		  "@context": "http://schema.org",
 		  "@type": "Person",
 		  "name": "Francis Liardet",
-		  "url": "http://www.francisliardet.com",
+		  "url": "http://*francisliardet.com",
 		  "worksFor": "RocketWerkz",
-		  "jobTitle": "Junior Programmer",
+		  "jobTitle": "Programmer",
 		  "homeLocation": "Dunedin, New Zealand",
 		  "email": "francisliardet@gmail.com"
 		}
@@ -54,12 +54,12 @@
 					</p>
 
 					<div id="social-icons">
-						<a href="https://twitter.com/francisjl"><i class="fab fa-twitter fa-2x"></i></a>
-						<a href="https://www.facebook.com/francisliardet"><i class="fab fa-facebook-square fa-2x"></i></a>
-						<a href="https://github.com/francisliardet"><i class="fab fa-github fa-2x"></i></a>
-						<a href="https://www.linkedin.com/in/francis-liardet/"><i class="fab fa-linkedin fa-2x"></i></a>
-						<a href="https://steamcommunity.com/id/GJJISGANGSTA"><i class="fab fa-steam-square fa-2x"></i></a>
-						<a href="mailto:francisliardet@gmail.com"><i class="fas fa-envelope fa-2x"></i></a>
+						<a href="https://twitter.com/francisjl"><i class="fab fa-twitter fa-3x"></i></a>
+						<a href="https://www.facebook.com/francisliardet"><i class="fab fa-facebook-square fa-3x"></i></a>
+						<a href="https://github.com/francisliardet"><i class="fab fa-github fa-3x"></i></a>
+						<a href="https://www.linkedin.com/in/francis-liardet/"><i class="fab fa-linkedin fa-3x"></i></a>
+						<a href="https://steamcommunity.com/id/GJJISGANGSTA"><i class="fab fa-steam-square fa-3x"></i></a>
+						<a href="mailto:francisliardet@gmail.com"><i class="fas fa-envelope fa-3x"></i></a>
 					</div>
 				</div>
 
@@ -70,9 +70,9 @@
 		<div class="info-box" id="link-list">
 			<div class="info-box-content">
 
-				<a href="./ai/index.html">COSC343 Assignment</a>
-				<a href="./game/lockdown.html">Lockdown</a>
-				<a href="./game/rooftops.html">Rooftops Over London</a>
+				<a href="./ai/index.html">COSC343-Assignment</a> •
+				<a href="./game/lockdown.html">Lockdown</a> •
+				<a href="./game/rooftops.html">Rooftops-Over-London</a> •
 				<a href="./game/toontown.html">ToonTown</a>
 
 			</div>
@@ -80,38 +80,32 @@
 	</div>
 
 	<body>
-		<div>
-			<table width="100%" style="height:100%;">
-				<tr>
-					<td align="center" valign="middle" style="vertical-align: middle; position: relative;">
-						<div style="position: relative; width: 840px; height: 840px; overflow: visible;" id="container">
-							<div style="position: relative; width: 840px; height: 840px; overflow: hidden;">
-								<img src="avatar.png" alt="Caaat" id="placeholder" align="middle" style="display: block;" />
 
-								<script type="text/javascript">
-									document.getElementById('placeholder').style.display='none';
-									document.write('<img src="spiral.jpg" alt="Caaat" id="spiral" align="middle" style="display: block; position: absolute;" />');
-									document.write('<img src="avatar_shadow.png" alt="Caaat" id="shadow" align="middle" style="display: block; position: absolute;" />');
-									document.write('<img src="avatar.png" alt="Caaat" id="cat" onclick="playPause();" align="middle" style="display: block; position: absolute;" />');
-								</script>
-							
-							</div>
-						</div>
-						<script type="text/javascript">					  
-						  (function() {
-							$("#cat").hover(
-							  function(){
-								$("#spiral").addClass("hoverclass");
-							  },
-							  function(){
-								$("#spiral").removeClass("hoverclass");
-							  });
-						  });
-						</script>
-					</td>
-				</tr>
-			</table>		
+		<div class="cat-container">
+			<div id="cat-img-wrapper">
+				<img src="avatar.png" alt="Musical Cat" id="cathead">
+
+				<script type="text/javascript">
+					document.getElementById('cathead').style.display='none';
+					document.write('<img src="avatar_shadow.png" id="shadow"/>');
+					document.write('<img src="avatar.png" id="cat" onclick="playPause();"/>');
+					document.write('<img src="spiral.jpg" id="spiral" />');
+				</script>
+			
+			</div>
 		</div>
+
+		<script type="text/javascript">					  
+		  (function() {
+			$("#cat").hover(
+			  function(){
+				$("#spiral").addClass("hoverclass");
+			  },
+			  function(){
+				$("#spiral").removeClass("hoverclass");
+			  });
+		  });
+		</script>	
 
 		<div id="jquery_jplayer"></div>
 

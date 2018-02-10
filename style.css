@@ -82,7 +82,6 @@ a:hover{
 
 
 
-
 #info-container {
   display: block;
   height: auto;
@@ -127,8 +126,25 @@ a:hover{
   max-width: 35%;
 }
 
+#cat-img-wrapper {
+  width: 70%; 
+  height: auto;
+  margin: auto;
+}
 
+.cat-container {
+  width: 100%; 
+  height: 100%; 
+  overflow: visible;
+  position: relative;
+}
 
+.cat-container img {
+
+  position: absolute;
+  width: 70%; 
+  height: auto;
+}
 
 
 
@@ -297,3 +313,46 @@ a:hover{
 
 .webgl-content * {border: 0; margin: 0; padding: 0}
 .webgl-content {position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+
+    #info-container {
+        width: 95%;
+        text-align: center;
+    }
+
+    #link-list {
+      max-width: 95%;
+      
+      line-height: 2em;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .info-box img {
+      max-width: 60%;
+      float: none;
+      display: block;
+      margin: auto;
+      padding: 1em;
+    }
+
+    #cat-img-wrapper {
+      width: 100%; 
+    }
+
+    .cat-container img {
+      width: 100%; 
+    }
+
+    #jp_container {
+      width: 80%;
+    }
+}
