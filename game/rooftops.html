@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rooftops Over London is a space invaders clone created over a week in 2015 for a summer school paper at Otago University">
     <title>Unity WebGL Player | Rooftops Over London</title>
     <script src="rooftops/Build/UnityLoader.js"></script>
     <link rel="stylesheet" href="../style.css">
@@ -10,9 +12,27 @@
       var gameInstance = UnityLoader.instantiate("gameContainer", "rooftops/Build/webbuild.json");
     </script>
   </head>
+
   <body>
     <div class="webgl-content">
       <div id="gameContainer" style="width: 650px; height: 780px"></div>
+
+      <div id="info-container-gamedesc">
+        <div class="info-box">
+          <div class="info-box-content">
+            <div>
+              <p> 
+                Rooftops Over London is a space invaders clone created over a week in 2015 for a summer school paper at Otago University.
+              </p>
+              <a href="/">Return to homepage</a>
+            </div>
+          </div>
+        </div> 
+      </div>
+
     </div>
+
+    
+
   </body>
 </html>
