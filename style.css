@@ -22,7 +22,8 @@ body{
 
 a, a:link, a:active, a:visited{
   text-decoration: none;
-	color: #777777;
+	color: #545454;
+  font-weight: bold;
 }
 
 a:hover{ 
@@ -280,7 +281,8 @@ a:hover{
 }
 
 .demo-container ul span {
-  color: #A0A600;
+  color: black;
+  font-weight: bold;
 }
 
 .demo-container li {
