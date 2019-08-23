@@ -1,4 +1,4 @@
-html{ 
+html{
 	width: 100%; 
 	height: 100%;
 
@@ -28,15 +28,6 @@ a, a:link, a:active, a:visited{
 a:hover{ 
 	color: #569aff;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -154,11 +145,6 @@ a:hover{
 
 
 /* Hamburger CSS */
-
-* {
-  margin: 0;
-  padding: 0; 
-}
 
 #nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
   width: 5em;
@@ -327,8 +313,12 @@ a:hover{
     #link-list {
       max-width: 95%;
       
-      line-height: 2em;
+      line-height: 4em;
       text-align: center;
+    }
+
+    #link-list a{
+      padding: 10px;
     }
 
     h1 {
@@ -354,5 +344,10 @@ a:hover{
 
     #jp_container {
       width: 80%;
+    }
+
+    /* Space out FA icons (social media etc) to meet google accessibility guidelines*/
+    .svg-inline--fa {
+      padding: 10px;
     }
 }
