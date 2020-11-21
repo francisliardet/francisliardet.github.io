@@ -315,8 +315,12 @@ a:hover{
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 980px) {
     /* For mobile phones: */
+	
+	html{
+		font-size: 1.0rem;
+	}
 
     #info-container {
         width: 95%;
