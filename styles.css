@@ -1,0 +1,50 @@
+@font-face { 
+	font-family: "Industry-Bold";
+	src: url("webFonts/Industry-Bold/font.woff2") format("woff2"), url("webFonts/Industry-Bold/font.woff") format("woff"); 
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+body,h1,h2,h3,h4,h5 
+{
+	font-family: Monospace;
+}
+
+body 
+{
+	font-size: 16px;
+}
+
+img 
+{
+	margin-bottom: -8px;
+}
+
+/*.w3-button
+{
+	margin-bottom: 20px;
+}*/
+
+a.main-nav-btn
+{
+	text-decoration: none;
+	opacity: 0.75;
+}
+
+a.main-nav-btn:hover
+{
+	font-weight: bold;
+	opacity: 1.0;
+}
+
+#nav-btn-1{color: #08F7FE;}
+#nav-btn-2{color: #09FBD3;}
+#nav-btn-3{color: #FE53BB;}
+#nav-btn-4{color: #F5D300;}
+
+#icarus-txt{font-family: Industry-Bold; font-size: 14px;}

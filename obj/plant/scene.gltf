@@ -1,0 +1,146 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.5.17",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "SWISSCHEESE.001",
+            "rotation" : [
+                0.023901384323835373,
+                -0.4200764000415802,
+                0.03960214555263519,
+                0.9063091278076172
+            ],
+            "scale" : [
+                0.010130349546670914,
+                0.010130351409316063,
+                0.010130348615348339
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "alphaCutoff" : 0.5,
+            "alphaMode" : "MASK",
+            "doubleSided" : true,
+            "name" : "BakedMaterial",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cylinder.002",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "bakedtexture",
+            "uri" : "bakedtexture.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 3226,
+            "max" : [
+                24.317224502563477,
+                53.266693115234375,
+                27.534048080444336
+            ],
+            "min" : [
+                -23.202220916748047,
+                -14.480380058288574,
+                -27.044647216796875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 3226,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 3226,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 12090,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 38712,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 38712,
+            "byteOffset" : 38712
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 25808,
+            "byteOffset" : 77424
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 24180,
+            "byteOffset" : 103232
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 127412,
+            "uri" : "scene.bin"
+        }
+    ]
+}

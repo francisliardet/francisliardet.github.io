@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Francis Liardet is a video game developer at RocketWerkz, currently living and working in Dunedin, New Zealand">
+
+		<title>Francis Liardet - Homepage</title>
+		<link rel=stylesheet type="text/css" href="style.css">
+		<link rel="icon" href="img/profile-icon-256.png">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="js/musicPlayer.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "Person",
+		  "name": "Francis Liardet",
+		  "url": "http://francisliardet.com",
+		  "image": "http://francisliardet.com/img/profile-orange.png",
+		  "worksFor": "RocketWerkz",
+		  "jobTitle": "Programmer",
+		  "homeLocation": "Dunedin, New Zealand",
+		  "email": "francisliardet@gmail.com"
+		}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
+					$(this).toggleClass('open');
+				});
+			});
+		</script>
+		
+		
+	</head>
+
+	<!--
+	<div id="nav-icon3">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+	-->
+
+	<div id="info-container">
+		<div class="info-box">
+			<div class="info-box-content">
+				<div>
+					<h1> Francis Liardet </h1>
+					<p id="bio-text"> 
+						<img src="img/profile-orange.png" alt="A picture of Francis Liardet">
+						Currently living the dream at <a href="http://rocketwerkz.com/">RocketWerkz</a>, Dunedin.<br>
+						Enjoying making video games, music, and the odd bit of cooking.
+					</p>
+
+					<div id="social-icons">
+						<a href="https://twitter.com/francisjl" aria-label="Connect via Twitter"><i class="fab fa-twitter fa-3x"></i></a>
+						<a href="https://www.facebook.com/francisliardet" aria-label="Connect via Facebook"><i class="fab fa-facebook-square fa-3x"></i></a>
+						<a href="https://github.com/francisliardet" aria-label="Connect via Github"><i class="fab fa-github fa-3x"></i></a>
+						<a href="https://www.linkedin.com/in/francis-liardet/" aria-label="Connect via LinkedIn"><i class="fab fa-linkedin fa-3x"></i></a>
+						<a href="https://steamcommunity.com/id/GJJISGANGSTA" aria-label="Connect via Steam"><i class="fab fa-steam-square fa-3x"></i></a>
+						<a href="mailto:francisliardet@gmail.com" aria-label="Connect via Email"><i class="fas fa-envelope fa-3x"></i></a>
+					</div>
+				</div>
+
+				<div id="profile-img"></div>
+			</div>
+		</div>
+
+		<div class="info-box" id="link-list">
+			<div class="info-box-content">
+
+				<a href="./ai/index.html">COSC343-Assignment</a> •
+				<a href="./game/lockdown.html">Lockdown</a> •
+				<a href="./game/rooftops.html">Rooftops-Over-London</a> •
+				<a href="./game/toontown.html">ToonTown</a>
+
+			</div>
+		</div>
+	</div>
+
+	<body>
+
+		<div class="cat-container">
+			<div id="cat-img-wrapper">
+				<img src="avatar.png" alt="Musical Cat" id="cathead">
+
+				<script type="text/javascript">
+					document.getElementById('cathead').style.display='none';
+					document.write('<img src="avatar_shadow.png" id="shadow" alt=""/>');
+					document.write('<img src="avatar.png" id="cat" alt="" onclick="playPause();"/>');
+					document.write('<img src="spiral.jpg" id="spiral" alt=""/>');
+				</script>
+			
+			</div>
+		</div>
+
+		<script type="text/javascript">					  
+		  (function() {
+			$("#cat").hover(
+			  function(){
+				$("#spiral").addClass("hoverclass");
+			  },
+			  function(){
+				$("#spiral").removeClass("hoverclass");
+			  });
+		  });
+		</script>	
+
+		<div id="jquery_jplayer"></div>
+
+		<div id="jp_container" class="demo-container">
+			<ul>
+				<li><span>Select a track : </span></li>
+				<li><a href="./music/wandering_eye.mp3" class="track track-default">Wandering Eye</a></li>
+				<li> | </li>
+				<li><a href="./music/intervention.mp3" class="track">Intervention</a></li>
+				<li> | </li>
+				<li><a href="./music/hopeless_wanderer.mp3" class="track">Hopeless Wanderer</a></li>
+				<li> | </li>
+				<li><a href="./music/eminence_front.mp3" class="track">Eminence Front</a></li>
+			</ul>
+			<p>
+				<span class="play-state"></span> :
+				<span class="track-name">nothing</span>
+				at <span class="extra-play-info"></span>
+				of <span class="jp-duration"></span>, which is
+				<span class="jp-current-time"></span>
+			</p>
+			<ul>
+				<!-- Play/Pause/Stop buttons hidden to stop conflict with cat button
+				<<li><a class="jp-play" href="#">Play</a></li>
+				<li><a class="jp-pause" href="#">Pause</a></li>
+				<li><a class="jp-stop" href="#">Stop</a></li>
+				-->
+			</ul>
+			<ul>
+				<li>volume :</li>
+				<li><a class="jp-mute" href="#">Mute</a></li>
+				<li><a class="jp-unmute" href="#">Unmute</a></li>
+				<li><a class="jp-volume-bar" href="#">|&lt;----------&gt;|</a></li>
+				<li><a class="jp-volume-max" href="#">Max</a></li>
+			</ul>
+		</div>
+	</body>
+</html>
