@@ -16,7 +16,13 @@ import { SobelOperatorShader } from './shaders/SobelOperatorShader.js';
 
 var camera, scene, renderer, effect, light, composer, controls;
 
-let effectSobel;
+var effectSobel, effectRGB;
+
+var minRGBShift = 0.0; //0.002
+var maxRGBShift = 0.01;
+
+var sound;
+var analyser;
 
 // Pairs of subdirectory names to desired scale
 var objects = [['arduino', 1], ['bread', 5], ['coffee', 1], ['plant', 0.065], ['keyboard', 0.5]];
@@ -33,9 +39,9 @@ var dummy = new THREE.Object3D();
 var minXDistance = -20;
 var maxXDistance = 20;
 
-let mouseX = 0, mouseY = 0;
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
+var mouseX = 0, mouseY = 0;
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
 
 function newMesh( chosenObject, instanceIndex ) {
 	var loader = new GLTFLoader();
@@ -102,6 +108,24 @@ export function init() {
 	light.position.set( 1, 1, 1 ).normalize();
 	scene.add( light );
 
+	// sound
+	// create an AudioListener and add it to the camera
+	const listener = new THREE.AudioListener();
+	camera.add( listener );
+
+	// create a global audio source
+	sound = new THREE.Audio( listener );
+
+	// load a sound and set it as the Audio object's buffer
+	const audioLoader = new THREE.AudioLoader();
+	audioLoader.load( 'audio/track-5.mp3', function( buffer ) {
+		sound.setBuffer( buffer );
+		sound.setLoop( true );
+		sound.setVolume( 0.5 );
+	});
+
+	analyser = new THREE.AudioAnalyser( sound, 32 );
+
 	// meshes
 
 	for (let chosenObject = 0; chosenObject < objects.length; chosenObject++)
@@ -143,9 +167,9 @@ export function init() {
 	// effect.uniforms[ 'scale' ].value = 5;
 	// composer.addPass( effect );
 
-	var effect = new ShaderPass( RGBShiftShader );
-	effect.uniforms[ 'amount' ].value = 0.002;//0.0015;
-	composer.addPass( effect );
+	effectRGB = new ShaderPass( RGBShiftShader );
+	effectRGB.uniforms[ 'amount' ].value = minRGBShift;
+	composer.addPass( effectRGB );
 
 	//
 
@@ -169,6 +193,17 @@ export function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 
 	document.addEventListener('mousemove', onDocumentMouseMove, false);
+}
+
+export function toggleAudioPlayback() {
+	if (sound.isPlaying)
+	{
+		sound.pause();
+	}
+	else
+	{
+		sound.play();
+	}
 }
 
 function getRandomWorldPosition() {
@@ -219,7 +254,15 @@ function render() {
 	camera.position.x = cameraDistFromOrigin;
 	camera.lookAt(0,0,0);
 
-	//camera.position.y += ( - (mouseY * 0.01)- camera.position.y ) * .0005;
+	// audio visualiser stuff
+	let minFreq = 35;
+	let maxFreq = 200;
+	let frequencyAlpha = Math.max(analyser.getAverageFrequency() - minFreq, 0) / (maxFreq - minFreq);
+
+	let newShiftValue = THREE.MathUtils.lerp(minRGBShift, maxRGBShift, frequencyAlpha);
+	effectRGB.uniforms[ 'amount' ].value = newShiftValue;
+
+	let newTranslateOffset = THREE.MathUtils.lerp(0.01, 0.1, frequencyAlpha);
 
 	if (meshes.length > 0){
 		for ( let i = 0; i < meshes.length; i++ ) {
@@ -239,7 +282,7 @@ function render() {
 
 					m.decompose(instancePosition, instanceRotation, instanceScale);
 
-					instancePosition.x -= 0.01;
+					instancePosition.x -= newTranslateOffset;
 
 					if  (instancePosition.x <= minXDistance)
 					{

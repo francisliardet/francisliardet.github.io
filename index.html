@@ -16,9 +16,16 @@
 	</head>
 	<body>
 		<script type="module">
-			import {init, animate} from './js/main.js';
+			import {init, animate, toggleAudioPlayback} from './js/main.js';
 			init();
 			animate();
+
+			var btn = document.getElementById('toggleAudioBtn');
+			btn.onclick = function(){ 
+				toggleAudioPlayback();
+				document.getElementById("toggleAudioIcon").classList.toggle("fa-music");
+				document.getElementById("toggleAudioIcon").classList.toggle("fa-pause"); 
+			}
 		</script>
 
 
@@ -50,6 +57,7 @@
 		        	<button title="Flick me an email" class="w3-bar-item w3-button w3-mobile w3-center w3-round-small" onclick="sendMail()"><i class="fa fa-envelope"></i></button>
 					<button title="Check out steam" class="w3-bar-item w3-button w3-mobile w3-center w3-round-small" onclick="gotoSteam()"><i class="fa fa-steam"></i></button>
 					<button title="Check out me" class="w3-bar-item w3-button w3-mobile w3-center w3-round-small" onclick="gotoMe()"><i class="fa fa-linkedin"></i></button>
+					<button title="Toggle Music" class="w3-bar-item w3-button w3-mobile w3-center w3-round-small" id="toggleAudioBtn" onclick="toggleAudio()"><i id="toggleAudioIcon" class="fa fa-music"></i></button>
 				</div>
 		      </div>
 		    </div>
@@ -64,6 +72,9 @@
 			  }
 			  function gotoMe() {
 			  	window.open("https://www.linkedin.com/in/francis-liardet/");
+			  }
+			  function toggleAudio() {
+				
 			  }
 		  </script>
 
