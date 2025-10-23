@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on In No Particular Order</title>
+    <link>http://localhost:1313/en/tags/</link>
+    <description>Recent Posts in Tags on In No Particular Order</description>
+    <generator>Hugo 0.150.1</generator>
+    <language>en</language>
+    <managingEditor>Francis Liardet</managingEditor>
+    
+      <webMaster>Francis Liardet</webMaster>
+    <lastBuildDate>Sun, 28 Sep 2025 17:52:58 +1300</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Authoring</title>
+      <link>http://localhost:1313/en/tags/authoring/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/authoring/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Taxonomy</title>
+      <link>http://localhost:1313/en/tags/taxonomy/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/taxonomy/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Alt</title>
+      <link>http://localhost:1313/en/tags/alt/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/alt/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Audio</title>
+      <link>http://localhost:1313/en/tags/audio/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/audio/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Content</title>
+      <link>http://localhost:1313/en/tags/content/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/content/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Cover</title>
+      <link>http://localhost:1313/en/tags/cover/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/cover/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Images</title>
+      <link>http://localhost:1313/en/tags/images/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/images/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Media</title>
+      <link>http://localhost:1313/en/tags/media/</link>
+      <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/media/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>History</title>
+      <link>http://localhost:1313/en/tags/history/</link>
+      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/history/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Redaction</title>
+      <link>http://localhost:1313/en/tags/redaction/</link>
+      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/redaction/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Terms</title>
+      <link>http://localhost:1313/en/tags/terms/</link>
+      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/terms/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Accent</title>
+      <link>http://localhost:1313/en/tags/accent/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/accent/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Color</title>
+      <link>http://localhost:1313/en/tags/color/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/color/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Configuration</title>
+      <link>http://localhost:1313/en/tags/configuration/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/configuration/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Discussion</title>
+      <link>http://localhost:1313/en/tags/discussion/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/discussion/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Footer</title>
+      <link>http://localhost:1313/en/tags/footer/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/footer/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Logo</title>
+      <link>http://localhost:1313/en/tags/logo/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/logo/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>http://localhost:1313/en/tags/markdown/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/markdown/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Menu</title>
+      <link>http://localhost:1313/en/tags/menu/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/menu/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Pagefind</title>
+      <link>http://localhost:1313/en/tags/pagefind/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/pagefind/</guid>
+      <description></description>
+      
+    </item>
+    <item>
+      <title>Slide</title>
+      <link>http://localhost:1313/en/tags/slide/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/en/tags/slide/</guid>
+      <description></description>
+      
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,427 @@
+
+{
+    "nodes": [{
+                "id": "5bdfc4409e9dfe99d91e44443606ff3c",
+                "title": "Authoring Stage Taxonomy for Digital Garden",
+                "permalink": "http://localhost:1313/en/content/en/post/authoring-custom-taxonomy/",
+                "type": "post"
+            },{
+                "id": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                "title": "Authoring Cover Images and Audio Articles",
+                "permalink": "http://localhost:1313/en/content/en/post/authoring-cover-images-and-audio-article/",
+                "type": "post"
+            },{
+                "id": "80dc83c2b600d327a77533cb41aafe24",
+                "title": "Authoring Terms Entry",
+                "permalink": "http://localhost:1313/en/content/en/post/authoring-terms-entry/",
+                "type": "post"
+            },{
+                "id": "a0614d8bfd9148e09770035c44259188",
+                "title": "Authoring The Redaction History",
+                "permalink": "http://localhost:1313/en/content/en/post/authoring-redaction-history/",
+                "type": "post"
+            },{
+                "id": "0c5fffe838bb6e41955cdd04ac559611",
+                "title": "Configure Discussion",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-discussion/",
+                "type": "post"
+            },{
+                "id": "2992367a03fb8abd6a610e0c924297ab",
+                "title": "Configure Homepage Slides",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-slides/",
+                "type": "post"
+            },{
+                "id": "397a9eb6571498939fddb5282b056485",
+                "title": "Configure Logo and Accent Color",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-logo-and-accent-color/",
+                "type": "post"
+            },{
+                "id": "fbba39f23160ba874434932402dd5a98",
+                "title": "Configure Main Footer",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-main-footer/",
+                "type": "post"
+            },{
+                "id": "effc550ecffd2da54a34e324434a8d89",
+                "title": "Configure Menu",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-menu/",
+                "type": "post"
+            },{
+                "id": "e0ab50861e02f41ad369334c4da37cd1",
+                "title": "Configure Pagefind",
+                "permalink": "http://localhost:1313/en/content/en/post/configure-pagefind/",
+                "type": "post"
+            },{
+                "id": "1d673c81a9d4d73da60cb903876fca68",
+                "title": "Markdown Test",
+                "permalink": "http://localhost:1313/en/content/en/post/markdown-test/",
+                "type": "post"
+            },{
+                "id": "4fa7ee1adb6fc76137484d0f6a795875",
+                "title": "Hugo-Tufte Features compatibility",
+                "permalink": "http://localhost:1313/en/content/en/post/tufte-features/",
+                "type": "post"
+            },
+                        {
+                            "id": "categories-authoring",
+                            "title": "Authoring",
+                            "permalink": "http://localhost:1313/en/categories/authoring/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-configuration",
+                            "title": "Configuration",
+                            "permalink": "http://localhost:1313/en/categories/configuration/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-homepage",
+                            "title": "Homepage",
+                            "permalink": "http://localhost:1313/en/categories/homepage/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-katex",
+                            "title": "Katex",
+                            "permalink": "http://localhost:1313/en/categories/katex/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-latex",
+                            "title": "Latex",
+                            "permalink": "http://localhost:1313/en/categories/latex/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-test",
+                            "title": "Test",
+                            "permalink": "http://localhost:1313/en/categories/test/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "categories-tufte-css",
+                            "title": "Tufte-Css",
+                            "permalink": "http://localhost:1313/en/categories/tufte-css/",
+                            "type": "categories"
+                        },
+                        {
+                            "id": "tags-accent",
+                            "title": "Accent",
+                            "permalink": "http://localhost:1313/en/tags/accent/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-alt",
+                            "title": "Alt",
+                            "permalink": "http://localhost:1313/en/tags/alt/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-audio",
+                            "title": "Audio",
+                            "permalink": "http://localhost:1313/en/tags/audio/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-authoring",
+                            "title": "Authoring",
+                            "permalink": "http://localhost:1313/en/tags/authoring/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-color",
+                            "title": "Color",
+                            "permalink": "http://localhost:1313/en/tags/color/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-configuration",
+                            "title": "Configuration",
+                            "permalink": "http://localhost:1313/en/tags/configuration/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-content",
+                            "title": "Content",
+                            "permalink": "http://localhost:1313/en/tags/content/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-cover",
+                            "title": "Cover",
+                            "permalink": "http://localhost:1313/en/tags/cover/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-discussion",
+                            "title": "Discussion",
+                            "permalink": "http://localhost:1313/en/tags/discussion/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-footer",
+                            "title": "Footer",
+                            "permalink": "http://localhost:1313/en/tags/footer/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-history",
+                            "title": "History",
+                            "permalink": "http://localhost:1313/en/tags/history/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-images",
+                            "title": "Images",
+                            "permalink": "http://localhost:1313/en/tags/images/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-logo",
+                            "title": "Logo",
+                            "permalink": "http://localhost:1313/en/tags/logo/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-markdown",
+                            "title": "Markdown",
+                            "permalink": "http://localhost:1313/en/tags/markdown/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-media",
+                            "title": "Media",
+                            "permalink": "http://localhost:1313/en/tags/media/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-menu",
+                            "title": "Menu",
+                            "permalink": "http://localhost:1313/en/tags/menu/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-pagefind",
+                            "title": "Pagefind",
+                            "permalink": "http://localhost:1313/en/tags/pagefind/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-redaction",
+                            "title": "Redaction",
+                            "permalink": "http://localhost:1313/en/tags/redaction/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-slide",
+                            "title": "Slide",
+                            "permalink": "http://localhost:1313/en/tags/slide/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-taxonomy",
+                            "title": "Taxonomy",
+                            "permalink": "http://localhost:1313/en/tags/taxonomy/",
+                            "type": "tags"
+                        },
+                        {
+                            "id": "tags-terms",
+                            "title": "Terms",
+                            "permalink": "http://localhost:1313/en/tags/terms/",
+                            "type": "tags"
+                        },
+    ],
+    "links": [
+            
+                    {
+                        "source": "5bdfc4409e9dfe99d91e44443606ff3c",
+                        "target": "categories-authoring",
+                    },
+                    {
+                        "source": "5bdfc4409e9dfe99d91e44443606ff3c",
+                        "target": "tags-authoring",
+                    },
+                    {
+                        "source": "5bdfc4409e9dfe99d91e44443606ff3c",
+                        "target": "tags-taxonomy",
+                    },
+            
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "categories-authoring",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-authoring",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-content",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-media",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-audio",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-cover",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-images",
+                    },
+                    {
+                        "source": "aa4744bcaed2e7a0f30e1b1c38e7af7e",
+                        "target": "tags-alt",
+                    },
+            
+                    {
+                        "source": "80dc83c2b600d327a77533cb41aafe24",
+                        "target": "categories-authoring",
+                    },
+                    {
+                        "source": "80dc83c2b600d327a77533cb41aafe24",
+                        "target": "tags-authoring",
+                    },
+                    {
+                        "source": "80dc83c2b600d327a77533cb41aafe24",
+                        "target": "tags-cover",
+                    },
+                    {
+                        "source": "80dc83c2b600d327a77533cb41aafe24",
+                        "target": "tags-taxonomy",
+                    },
+                    {
+                        "source": "80dc83c2b600d327a77533cb41aafe24",
+                        "target": "tags-terms",
+                    },
+            
+                    {
+                        "source": "a0614d8bfd9148e09770035c44259188",
+                        "target": "categories-authoring",
+                    },
+                    {
+                        "source": "a0614d8bfd9148e09770035c44259188",
+                        "target": "tags-authoring",
+                    },
+                    {
+                        "source": "a0614d8bfd9148e09770035c44259188",
+                        "target": "tags-redaction",
+                    },
+                    {
+                        "source": "a0614d8bfd9148e09770035c44259188",
+                        "target": "tags-history",
+                    },
+            
+                    {
+                        "source": "0c5fffe838bb6e41955cdd04ac559611",
+                        "target": "categories-configuration",
+                    },
+                    {
+                        "source": "0c5fffe838bb6e41955cdd04ac559611",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "0c5fffe838bb6e41955cdd04ac559611",
+                        "target": "tags-discussion",
+                    },
+            
+                    {
+                        "source": "2992367a03fb8abd6a610e0c924297ab",
+                        "target": "categories-homepage",
+                    },
+                    {
+                        "source": "2992367a03fb8abd6a610e0c924297ab",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "2992367a03fb8abd6a610e0c924297ab",
+                        "target": "tags-slide",
+                    },
+            
+                    {
+                        "source": "397a9eb6571498939fddb5282b056485",
+                        "target": "categories-configuration",
+                    },
+                    {
+                        "source": "397a9eb6571498939fddb5282b056485",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "397a9eb6571498939fddb5282b056485",
+                        "target": "tags-logo",
+                    },
+                    {
+                        "source": "397a9eb6571498939fddb5282b056485",
+                        "target": "tags-color",
+                    },
+                    {
+                        "source": "397a9eb6571498939fddb5282b056485",
+                        "target": "tags-accent",
+                    },
+            
+                    {
+                        "source": "fbba39f23160ba874434932402dd5a98",
+                        "target": "categories-configuration",
+                    },
+                    {
+                        "source": "fbba39f23160ba874434932402dd5a98",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "fbba39f23160ba874434932402dd5a98",
+                        "target": "tags-footer",
+                    },
+            
+                    {
+                        "source": "effc550ecffd2da54a34e324434a8d89",
+                        "target": "categories-configuration",
+                    },
+                    {
+                        "source": "effc550ecffd2da54a34e324434a8d89",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "effc550ecffd2da54a34e324434a8d89",
+                        "target": "tags-menu",
+                    },
+            
+                    {
+                        "source": "e0ab50861e02f41ad369334c4da37cd1",
+                        "target": "categories-configuration",
+                    },
+                    {
+                        "source": "e0ab50861e02f41ad369334c4da37cd1",
+                        "target": "tags-configuration",
+                    },
+                    {
+                        "source": "e0ab50861e02f41ad369334c4da37cd1",
+                        "target": "tags-pagefind",
+                    },
+            
+                    {
+                        "source": "1d673c81a9d4d73da60cb903876fca68",
+                        "target": "categories-test",
+                    },
+                    {
+                        "source": "1d673c81a9d4d73da60cb903876fca68",
+                        "target": "tags-markdown",
+                    },
+            
+                    {
+                        "source": "4fa7ee1adb6fc76137484d0f6a795875",
+                        "target": "categories-katex",
+                    },
+                    {
+                        "source": "4fa7ee1adb6fc76137484d0f6a795875",
+                        "target": "categories-latex",
+                    },
+                    {
+                        "source": "4fa7ee1adb6fc76137484d0f6a795875",
+                        "target": "categories-tufte-css",
+                    },
+    ],
+}

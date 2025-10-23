@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <!-- head.html --><!-- meta.html -->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authoring The Redaction History | In No Particular Order</title>
+<meta name="author" content="[Author Name]">
+<meta name="description" content="How to set up the redaction history in Hugo Brewm theme" >
+<meta name="keywords" content="authoring,redaction,history">
+<link rel="canonical" href="http://localhost:1313/en/content/en/post/authoring-redaction-history/">
+
+
+
+        <link rel="me" href="https://infosec.exchange/@foxx">
+    
+        <meta name="mastodon:creator" content="@foxx@infosec.exchange">
+    
+    <!-- twitterCard -->
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Authoring The Redaction History | In No Particular Order" />
+    <meta name="twitter:description" content="How to set up the redaction history in Hugo Brewm theme" />
+        <meta name="twitter:image" content="https://repository-images.githubusercontent.com/923527728/46a32a19-69ac-45b3-91a4-c4d299fb234b" />
+    
+    <!-- openGraph -->
+    <meta property="og:title" content="Authoring The Redaction History | In No Particular Order" />
+    <meta property="og:description" content="How to set up the redaction history in Hugo Brewm theme" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://localhost:1313/en/content/en/post/authoring-redaction-history/" />
+        <meta property="og:image" content="https://repository-images.githubusercontent.com/923527728/46a32a19-69ac-45b3-91a4-c4d299fb234b" />
+    <meta property="og:site_name" content="In No Particular Order" /><!-- js.html -->
+
+
+    <script src="http://localhost:1313/js/hugo-brewm.min.js" defer></script><!-- css.html -->
+
+
+    <link rel="stylesheet" href="http://localhost:1313/css/hugo-brewm.min.css">
+
+
+
+    <!-- css/inline.html -->
+    <style>
+         
+        body {max-width: 786px; margin: auto; padding: 2rem;}
+        img {max-width: 86vw;}
+    </style>
+    
+</head>
+<body  id="post" >
+    <!-- header.html -->
+<header class="pagewidth">
+    <div id="background-header" class="background" aria-hidden="true">
+        <div class="grain" hidden></div>
+    </div>
+    
+    <nav aria-label="Bypass">
+        <a id="to-content" href="#content" aria-label="Skip to Main Content">
+            <span>Skip to Main Content</span>
+            <kbd class="key" aria-hidden="true">c</kbd>
+            <span class="screening" aria-hidden="true"></span>
+        </a>
+    </nav>
+    
+        <a id="logo" href="http://localhost:1313/en/" aria-label="In No Particular Order" aria-description="Homepage">
+                <!-- logotype.html --><svg id="logotype" xmlns="http://www.w3.org/2000/svg" version="1.1" width="616pt" aria-label="In No Particular Order">
+            <text id="logotype__text" y="19.5pt" x="0">In No Particular Order</text>
+        </svg>
+        </a>
+    
+    <details class="presentation" id="top-nav">
+        <summary class="on-deck">
+            <span class="t t2">Navigation</span>
+            <span class="menu-icon" role="presentation"></span>
+        </summary>
+        <nav tabindex="-1" aria-label="Top">
+            <!-- menu.html -->
+            <!-- search.html -->
+<details id="has-search" class="presentation js-details" name="on-deck">
+    <summary class="on-deck srm" accesskey="q" aria-labelledby="search-label" aria-keyshortcuts="q">
+        <span id="search-label" class="t t2 srt">Search</span>
+    </summary>
+    
+        <!-- pagefind.html -->
+    <div id="search" class="on-hull">
+        <div role="presentation" class="screening js-cgpn"></div>
+    </div>
+    <script src="http://localhost:1313/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script>
+        let pageFindInitialized = false;
+        const initPageFind = function(event) {
+            if (!pageFindInitialized) {
+                new PagefindUI({
+                    element: "#search",
+                    showImages: false,
+                    translations: {
+                        placeholder: "Search"
+                    }
+                });
+                
+                const pFInput = document.querySelector('.pagefind-ui__search-input');
+                if (pFInput) {
+                    pFInput.setAttribute('aria-label', pFInput.getAttribute('placeholder'));
+                }
+                pageFindInitialized = true;
+                document.removeEventListener('DOMContentLoaded', initPageFind);
+            }
+        };
+        document.addEventListener('DOMContentLoaded', initPageFind);
+    </script>
+        <noscript id="has-search-fallback" class="on-hull">
+                
+    <!-- duckduckgo.html -->
+    <form id="duckduckgo" class="form on-plank"
+        name="x" action="//duckduckgo.com/"
+        role="search" aria-label="[i18n] searchDuckDuckGo">
+        <input type="hidden" value="localhost:1313" name="sites"></input>
+        <input type="hidden" value="1" name="kh"></input>
+        <input type="hidden" value="1" name="kn"></input>
+        <input type="hidden" value="1" name="kac"></input>
+        <input class="ldots form__input" type="search" placeholder="Search" name="q" role="searchbox"></input>
+        <button class="form__button" type="submit" aria-label="Search">
+            <img src="https://duckduckgo.com/assets/logo_header.v109.svg" alt="" role="presentation" aria-hidden="true">
+        </button>
+    </form>
+    <div role="presentation" class="screening js-cgpn"></div>
+        </noscript>
+    
+</details>
+
+            <!-- menu.html -->
+            <!-- i18n.html -->
+
+
+        </nav>
+        <div id="top-nav-screen" class="screening js-cpn" role="presentation" aria-hidden="true"></div>
+    </details>
+</header>
+    
+    <!-- [main] baseof.html -->
+    <main id="page">
+        <!-- main/header.html -->
+        <header class="pagewidth">
+            
+                <!-- menu.html -->
+    <menu class="srm">
+        <a id="print-button" class="hide" href="javascript:window.print()" role="button" aria-label="Print">
+            <span class="t srt" role="tooltip">Print</span>
+        </a>
+        <a id="navigatorShare" href="#share" role="button" aria-label="Share">
+            <span class="t srt" role="tooltip">Share</span>
+        </a>
+        <a id="copyPermalink"  href="javascript:navigator.clipboard.writeText(window.location.href)" role="button" aria-label="Copy URL">
+            <span id="copy" class="t srt" role="tooltip">Copy URL</span>
+            <span id="isCopying" style="display: none;">Copying...</span>
+            <span id="copyText" style="display: none;">Copy URL</span>
+        </a>
+    </menu>
+    <button id="back" class="hide" type="button" onclick="history.back();" aria-label="Go Back">
+        <span class="t srt" role="tooltip">Go Back</span>
+    </button>
+            
+                <!-- nav.html -->
+<details class="presentation" aria-expanded="true" id="has-breadcrumb" open>
+    <summary id="breadcrumb" tabindex="-1">
+        <span>Breadcrumb</span>
+    </summary>
+        <nav aria-labelledby="breadcrumb">
+            <ul role="presentation" class="breadcrumb ">
+                    <!-- breadcrumb.html -->
+        <li>
+            <a href="http://localhost:1313/en/content/" aria-current="true">Contents
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:1313/en/content/en/" aria-current="true">
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:1313/en/content/en/post/" aria-current="true">Post
+            </a>
+        </li>
+    <li>
+        <a href="" aria-current="page" tabindex="-1">Authoring The Redaction History
+        </a>
+    </li>
+            </ul>
+        </nav>
+</details>
+        </header>
+        <div id="top" role="presentation">
+            
+        </div>
+        
+    <article id="main-article" class="pagewidth rm"
+        role="document" aria-labelledby="title"
+            data-pagefind-body>
+        <header aria-labelledby="title">
+            
+            <span id="has-stage" class="section-title">
+                            <span class="st evergreen"></span>
+                        <a href="http://localhost:1313/en/stage/evergreen/" id="stage" aria-label="Stage: Evergreen">
+                            <span>Evergreen</span>
+                        </a>
+            </span>
+            
+            <!-- title.html -->
+        <hgroup data-bionRead-safe>
+            <h1 id="title"
+                    data-pagefind-meta="title"
+                >Authoring The Redaction History</h1>
+            <p  class="subtitle"
+                role="doc-subtitle">How to set up the redaction history in Hugo Brewm theme</p>
+        </hgroup>
+            <div id="doc-author" class="textsw author">
+                            
+                            <a href="http://localhost:1313/en/author/author-name/">AUTHOR NAME</a>
+            </div>
+            <!-- timestamp.html-->
+    <div >
+        <time class="doc-publish-date" datetime="2025-02-03T00:00:00&#43;00:00" data-time-label="Published on">February 3, 2025</time>
+    </div>
+        </header>
+        <!-- audio.html -->
+        <section aria-labelledby="title" id="content" data-bionRead-safe>
+                <p>The redaction history functionality enables you to track and communicate content modifications to readers.
+Within the post&rsquo;s front matter, you can specify details such as <code>editor</code>, <code>reviewer</code>, and include explanatory notes (<code>note</code>) about the changes made.
+This feature requires manual configuration in the post&rsquo;s front matter section.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Authoring The Redaction History&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">history</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">date</span> <span class="p">=</span> <span class="s2">&#34;2025-02-01&#34;</span><span class="p">,</span> <span class="nx">author</span> <span class="p">=</span> <span class="s2">&#34;Author Name&#34;</span><span class="p">,</span> <span class="nx">reviewer</span> <span class="p">=</span> <span class="s2">&#34;Reviewer Name&#34;</span><span class="p">,</span> <span class="nx">note</span> <span class="p">=</span> <span class="s2">&#34;Example&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">date</span> <span class="p">=</span> <span class="s2">&#34;2025-02-02&#34;</span><span class="p">,</span> <span class="nx">author</span> <span class="p">=</span> <span class="s2">&#34;Author Name&#34;</span><span class="p">,</span> <span class="nx">editor</span> <span class="p">=</span> <span class="s2">&#34;Editor Name&#34;</span><span class="p">,</span> <span class="nx">note</span> <span class="p">=</span> <span class="s2">&#34;Addendum (example)&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">date</span> <span class="p">=</span> <span class="s2">&#34;2025-02-03&#34;</span><span class="p">,</span> <span class="nx">note</span> <span class="p">=</span> <span class="s2">&#34;Errata (example)&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span></code></pre></div><p>A chronological timeline displaying these information will appear under the article&rsquo;s information section, as demonstrated in this example post.</p>
+
+        </section>
+            <footer>
+                
+    <nav id="keywords" aria-label="Tags">
+        <span>Tags:&nbsp;</span>
+        
+        <!-- terms.html -->
+    <ul class="delimiter" role="presentation">
+            <li><a href="http://localhost:1313/en/tags/authoring/" >Authoring</a></li>
+            <li><a href="http://localhost:1313/en/tags/redaction/" >Redaction</a></li>
+            <li><a href="http://localhost:1313/en/tags/history/" >History</a></li>
+    </ul>
+    </nav>
+            </footer>
+    </article>
+    <hr class="hide" style="margin: 1in 0;">
+    <div id="contentinfo" class="pagewidth" role="contentinfo" data-pagefind-ignore="all">
+                <!-- related.html -->
+    <nav id="related" aria-label="You might also like">
+        <strong class="section-title">You might also like</strong><ol>
+                    <li><a href="http://localhost:1313/en/content/en/post/authoring-terms-entry/">Authoring Terms Entry</a></li>
+                </ol>
+    </nav>
+                <!-- colophon.html -->
+    <div id="colophon" style="display: none;" aria-live="polite">
+        <strong class="section-title">Colophon</strong>
+        <div>
+            <div id="qr" role="img" aria-label="QR code"></div>
+            <div class="verbose">
+                <div class="has-aria-label-top" aria-label="Authoring The Redaction History"><span>http://localhost:1313/en/content/en/post/authoring-redaction-history/</span></div>
+                <div><span>This page is built on: </span><time datetime="2025-09-28T17:52:58&#43;13:00">2025-09-28 17:52</time></div>
+                <div><span>This page is accessed on: </span><time id="time-stamp"></time></div><div><span>Powered by </span><a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <a href="https://github.com/gohugoio/hugo/releases/tag/v0.150.1" aria-label="Hugo 0.150.1" target="_blank" rel="noopener">v0.150.1</a> & <a href="https://github.com/foxihd/hugo-brewm" target="_blank" rel="noopener">hugo-brewm</a>.</div>
+            </div>
+        </div>
+    </div>
+                <!-- history.html -->
+        <div id="has-timeline" class="has-details">
+            <strong class="section-title">Redaction History</strong>
+            <ol aria-label="Redaction History">
+                    <li>
+                        <details class="presentation js-details" name="redaction-history">
+                            <summary>
+                                <time datetime="2025-02-01T00:00:00&#43;00:00">2025-02-01</time>
+                                            <span class="st seedling"></span>
+                            </summary>
+                            <div tabindex="0">
+                                    <div class="has-aria-label-top" aria-label="Authors:">Author Name.</div>
+                                    <div class="has-aria-label-top" aria-label="Reviewed By:">Reviewer Name.</div>
+                                    <div class="has-aria-label-top" aria-label="Note:">Example.</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="presentation js-details" name="redaction-history">
+                            <summary>
+                                <time datetime="2025-02-02T00:00:00&#43;00:00">2025-02-02</time>
+                                            <span class="st budding"></span>
+                            </summary>
+                            <div tabindex="0">
+                                    <div class="has-aria-label-top" aria-label="Authors:">Author Name.</div>
+                                    <div class="has-aria-label-top" aria-label="Edited By:">Editor Name.</div>
+                                    <div class="has-aria-label-top" aria-label="Note:">Addendum (example).</div>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="presentation js-details" name="redaction-history">
+                            <summary>
+                                <time datetime="2025-02-03T00:00:00&#43;00:00">2025-02-03</time>
+                                            <span class="st evergreen"></span>
+                            </summary>
+                            <div tabindex="0">
+                                    <div class="has-aria-label-top" aria-label="Note:">Errata (example).</div>
+                            </div>
+                        </details>
+                    </li>
+            </ol>
+            <p>Some information might changes over time, we keep redaction up to date.</p>
+        </div>
+            
+            <!-- nav.html -->
+<details class="presentation" aria-expanded="true" id="has-share" open>
+    <summary id="share" tabindex="-1">
+        <span>Share</span>
+    </summary>
+        <nav aria-labelledby="share">
+            <ul role="presentation" class="share srm">
+                    <!-- share.html -->
+    <li id="has-mastodon">
+        <!-- mastodon.html -->
+    <form class="form" id="mastodon" action="//sharetomastodon.github.io/" target="_blank" rel="noopener noreferrer">
+        <input id="mastodonTitle" type="hidden" name="title" value="Authoring The Redaction History">
+        <input id="mastodonPermalink" type="hidden" name="url" value="http://localhost:1313/en/content/en/post/authoring-redaction-history/">
+        <input id="mastodonText" type="hidden" name="text" value="Authoring The Redaction History http://localhost:1313/en/content/en/post/authoring-redaction-history/" disabled>
+        <input id="mastodonInstance" type="url" class="ldots form__input" placeholder="Enter Mastodon instance (https://www.example.com)" aria-label="Mastodon instance URL">
+        <button class="form__button" type="submit" aria-label="Share on Mastodon">
+            <i class="icon mastodon sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Mastodon</span>
+        </button>
+    </form>
+    </li>
+    <li>
+        <a href="mailto:?subject=Authoring%20The%20Redaction%20History&body=http%3a%2f%2flocalhost%3a1313%2fen%2fcontent%2fen%2fpost%2fauthoring-redaction-history%2f" role="button" aria-label="Share on Email">
+            <i class="email sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Email</span>
+        </a>
+    </li>
+    <li>
+        <a href="whatsapp://send?text=Authoring%20The%20Redaction%20History%20http%3a%2f%2flocalhost%3a1313%2fen%2fcontent%2fen%2fpost%2fauthoring-redaction-history%2f" role="button" aria-label="Share on Whatsapp">
+            <i class="whatsapp sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Whatsapp</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://telegram.me/share/url?text=Authoring%20The%20Redaction%20History&amp;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Telegram in new tab">
+            <i class="telegram sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Telegram</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://bsky.app/intent/compose?text=Authoring%20The%20Redaction%20History&amp;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Bluesky in new tab">
+            <i class="bluesky sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Bluesky</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://facebook.com/sharer/sharer.php?u=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Facebook in new tab">
+            <i class="facebook sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Facebook</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://news.ycombinator.com/submitlink?u=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;t=Authoring%20The%20Redaction%20History" role="button"
+            aria-label="Share on Hackernews in new tab">
+            <i class="hackernews sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Hackernews</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;title=Authoring%20The%20Redaction%20History&amp;summary=Authoring%20The%20Redaction%20History&amp;source=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Linkedin in new tab">
+            <i class="linkedin sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Linkedin</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://pinterest.com/pin/create/button/?url=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;media=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;description=Authoring%20The%20Redaction%20History" role="button"
+            aria-label="Share on Pinterest in new tab">
+            <i class="pinterest sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Pinterest</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://reddit.com/submit/?url=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;resubmit=true&amp;title=Authoring%20The%20Redaction%20History" role="button"
+            aria-label="Share on Reddit in new tab">
+            <i class="reddit sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Reddit</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Authoring%20The%20Redaction%20History&amp;caption=Authoring%20The%20Redaction%20History&amp;content=http://localhost:1313/en/content/en/post/authoring-redaction-history/&amp;canonicalUrl=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Tumblr in new tab">
+            <i class="tumblr sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Tumblr</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="http://vk.com/share.php?title=Authoring%20The%20Redaction%20History&amp;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Vk in new tab">
+            <i class="vk sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Vk</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/intent/tweet/?text=Authoring%20The%20Redaction%20History&amp;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/" role="button"
+            aria-label="Share on Twitter in new tab">
+            <i class="twitter sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Twitter</span>
+        </a>
+    </li>
+    <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.xing.com/app/user?op=share;url=http://localhost:1313/en/content/en/post/authoring-redaction-history/;title=Authoring%20The%20Redaction%20History" role="button"
+            aria-label="Share on Xing in new tab">
+            <i class="xing sri" aria-hidden="true"></i>
+            <span class="t srt" role="tooltip">Share on Xing</span>
+        </a>
+    </li>
+            </ul>
+        </nav>
+</details>
+    </div>
+    
+        
+                <!-- mastodon.html -->
+<details id="comments" class="presentation pagewidth" aria-label="Discussion" open
+    data-i18n-noComment="No comments to display."
+    data-i18n-err="Error when loading comments"
+    data-i18n-loading="Loading comments on Fediverse"
+    data-i18n-replies="Replies"
+    data-i18n-reblogs="Reblogs"
+    data-i18n-favourites="Favourites"
+    >
+    <summary class="section-title" role="button" aria-expanded="true" aria-controls="mastodon-comments">
+        <span>Discussion</span>
+        <div id="mastodon-stats" class="stat" aria-live="polite"></div>
+    </summary>
+
+    <article id="discussion-starter">
+        <div id="mastodon-content">
+            <noscript>
+                <div id="comments-error" role="alert">Uh-oh... Javascript is disabled! No comments to display.</div>
+            </noscript>
+        </div>
+        <nav aria-label="Join Discussion">
+            <a id="join-discussion" href="https://infosec.exchange/@foxx/113979609651534969" rel="nofollow" aria-label="Join Discussion">
+                <i class="icon mastodon" style="padding-right: 3pt;"></i><span>Join Discussion</span>
+            </a>
+        </nav>
+    </article>
+
+    
+        <ul id="mastodon-comments" role="feed" aria-busy="true" aria-label="Discussion"
+            data-uri="https://infosec.exchange/@foxx/113979609651534969"></ul>
+    
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js" referrerpolicy="no-referrer"
+            integrity="sha256-ieH6dkfLSVNw06mXrOQ4f10V2fTFrxI1LFPapACVYoc=" crossorigin="anonymous" defer></script>
+    <!-- fediverse/js.html -->
+        <script src="http://localhost:1313/js/fediverse.min.js" defer></script>
+</details>
+
+
+        <!-- main/footer.html -->
+    <hr class="hide">
+    <footer id="main-footer"><div class="column column--multicols pagewidth" style="--multicols: 2"><div id="main-footer-primary">
+                        <p><strong>Impressum</strong></p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<br>
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    </div>
+                <div id="main-footer-secondary"  class="column" style="--col: 10rem">
+                        <div>
+                            <p><strong>Example Links</strong></p>
+<ul>
+<li><a href="#">Example Link 1</a></li>
+<li><a href="#">Example Link 2</a></li>
+<li><a href="#">Example Link 3</a></li>
+<li><a href="#">Example Link 4</a></li>
+</ul>
+
+                        </div>
+                        <div>
+                            <p><strong>More Links</strong></p>
+<ul>
+<li><a href="#">More Link 1</a></li>
+<li><a href="#">More Link 2</a></li>
+<li><a href="#">More Link 3</a></li>
+</ul>
+
+                        </div>
+                </div>
+            </div>
+            <div id="unified-footer"><p id="license">Copyleft 2025 © Author</p>
+                    <!-- menu.html -->
+                        <p id="coffee-counter">Made with ❤️ and 16 cups of coffee, if not more.</p>
+            </div>
+    </footer>
+    </main>
+    <!-- footer.html -->
+<footer id="body-footer" class="pagewidth" style="display: none;">
+    <div id="background-footer" class="background hide" role="presentation" aria-hidden="true">
+        <div class="grain" hidden></div>
+    </div>
+    <div id="focusMode"></div>
+    <!-- a11y.html --><details id="has-a11y" class="presentation js-details hide" name="on-deck" aria-haspopup="true" aria-labelledby="has-a11y-summary">
+    <summary id="has-a11y-summary" accesskey="a" aria-keyshortcuts="a">
+        <span>&nbsp;Accessibility</span>
+        <kbd class="key" aria-hidden="true">a</kbd>
+    </summary>
+    <!-- a11y console -->
+    <fieldset id="a11y" role="region" aria-label="Accessibility"
+        data-i18n-optimizeSR="Screen Reader Optimization"
+        data-i18n-optimizeSRdesc="Optimize display and resources for screen reader users who navigate with a pointer device."
+        data-i18n-colorSettings="Color Settings"
+        data-i18n-darkMode="Dark Mode"
+        data-i18n-light="Light"
+        data-i18n-dark="Dark"
+        data-i18n-contrast="Contrast"
+        data-i18n-lessContrast="Low"
+        data-i18n-moreContrast="High"
+        data-i18n-defaultContrast="Default"
+        data-i18n-colorPalette="Color Palette"
+        data-i18n-defaultColor="Default"
+        data-i18n-deuteranopia="Deuteranopia"
+        data-i18n-protanopia="Protanopia"
+        data-i18n-tritanopia="Tritanopia"
+        data-i18n-monochrome="Monochrome"
+        data-i18n-fontSize="Font Size"
+        data-i18n-baselineStretch="Baseline Stretch"
+        data-i18n-OpenDyslexic="Use OpenDyslexic Font"
+        data-i18n-menuControls="Accessibility Menu Controls"
+        data-i18n-save="Save"
+        data-i18n-reset="Reset"
+        data-i18n-close="Close"
+        data-i18n-bionRead="BionRead Mode"
+        data-i18n-focusMode="Focus Mode"
+        data-i18n-noLocalStorage="LocalStorage is not available in your browser. Settings won&#39;t be saved.">
+    </fieldset>
+    <div class="screening js-cpn" role="presentation" aria-hidden="true"></div>
+</details>
+
+
+    <div id="useBionRead" class="sri"></div>
+    <!-- [top] bypass block -->
+    <nav aria-label="Bypass">
+        <a id="to-top" class="srm" href="#top" title="To Content Top" accesskey="c" aria-keyshortcuts="c" aria-label="To Content Top">
+            <span class="t srt">To Content Top</span>
+            <kbd class="key" aria-hidden="true">c</kbd>
+        </a>
+    </nav>
+</footer>
+    
+    <!-- [post] single.html -->
+    <div id="bionReadSnapshot" hidden></div>
+    <!-- [background] baseof.html -->
+    <div id="background-body"
+        role="presentation" aria-hidden="true">
+        <div class="grain" hidden></div>
+        <div id="dwclock" hidden>
+            <div id="min">
+                <div class="hand"></div>
+            </div>
+            <div id="hour">
+                <div class="hand"></div>
+            </div>
+        </div>
+    </div>
+</html>

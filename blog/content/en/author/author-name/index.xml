@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Author Name on In No Particular Order</title>
+    <link>http://localhost:1313/content/en/author/author-name/</link>
+    <description>Recent Posts in Author Name on In No Particular Order</description>
+    <generator>Hugo 0.150.1</generator>
+    <language>en</language>
+    <managingEditor>Francis Liardet</managingEditor>
+    
+      <webMaster>Francis Liardet</webMaster>
+    <lastBuildDate>Sun, 28 Sep 2025 17:59:42 +1300</lastBuildDate>
+    <atom:link href="http://localhost:1313/content/en/author/author-name/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homeassistant on In No Particular Order</title>
+    <link>http://localhost:1313/tags/homeassistant/</link>
+    <description>Recent Posts in Homeassistant on In No Particular Order</description>
+    <generator>Hugo 0.150.1</generator>
+    <language>en</language>
+    <managingEditor>Francis Liardet</managingEditor>
+    
+      <webMaster>Francis Liardet</webMaster>
+    <lastBuildDate>Tue, 30 Sep 2025 01:33:33 +1300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/homeassistant/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a Hydroponic Sensor Suite with ESP32</title>
+      <link>http://localhost:1313/post/hydroponic_sensor_suite_esp32/</link>
+      <pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate>
+      <author>Francis Liardet</author>
+      <guid>http://localhost:1313/post/hydroponic_sensor_suite_esp32/</guid>
+      <description></description>
+      <enclosure url="http://localhost:1313/post/hydroponic_sensor_suite_esp32/cover.webp" length="0" type="image/jpeg" />
+    </item>
+  </channel>
+</rss>

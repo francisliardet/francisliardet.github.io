@@ -1,0 +1,464 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><title>Creating a Hydroponic Sensor Suite with ESP32 | In No Particular Order</title><meta name=author content="Francis Liardet"><meta name=description content="Hooking up a powerful array of sensors to an indoor NFT hydroponic system using an ESP32-based microcontroller."><meta name=keywords content="esp32,hydroponics,3d printing,plants,home assistant"><link rel=canonical href=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Creating a Hydroponic Sensor Suite with ESP32 | In No Particular Order"><meta name=twitter:description content="Hooking up a powerful array of sensors to an indoor NFT hydroponic system using an ESP32-based microcontroller."><meta name=twitter:image content="https://francisliardet.com/post/hydroponic_sensor_suite_esp32/cover.webp"><meta property="og:title" content="Creating a Hydroponic Sensor Suite with ESP32 | In No Particular Order"><meta property="og:description" content="Hooking up a powerful array of sensors to an indoor NFT hydroponic system using an ESP32-based microcontroller."><meta property="og:type" content="article"><meta property="og:url" content="https://francisliardet.com/post/hydroponic_sensor_suite_esp32/"><meta property="og:image" content="https://francisliardet.com/post/hydroponic_sensor_suite_esp32/cover.webp"><meta property="og:site_name" content="In No Particular Order"><script src=https://francisliardet.com/js/hugo-brewm.min.js integrity=sha384-pkABb0TPkeq3AxiS2BULdCUQqMVNS3HGboZzLWD2EyW7KgEqYzZ01hTM+nogR1Um crossorigin=anonymous defer></script><link rel=stylesheet href=https://francisliardet.com/css/hugo-brewm.min.css integrity="sha256-pvYQ4T7xJqXE8/8G15VYqDIMcEbbDXupNX9qmkZ375s=" crossorigin=anonymous><style>body{max-width:786px;margin:auto;padding:2rem}img{max-width:86vw}</style>// Custom CSS
+<link rel=stylesheet href=https://francisliardet.com/css/custom.css><link rel=stylesheet href=https://francisliardet.com/css/dimbox.min.css>// Custom javascript
+<script type=text/javascript src=https://francisliardet.com/js/dimbox.min.js></script><link href=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css rel=stylesheet integrity=sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js integrity=sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js integrity=sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh crossorigin=anonymous onload=renderMathInElement(document.body) defer></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.getElementById("main-article"),{delimiters:[{left:"$",right:"$",display:!1},{left:"$$",right:"$$",display:!0},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0},{left:"egin{equation}",right:"end{equation}",display:!0},{left:"egin{align}",right:"end{align}",display:!0}],throwOnError:!1})})</script></head><body id=post><header class=pagewidth><div id=background-header class=background aria-hidden=true><div class=grain hidden></div></div><nav aria-label=Bypass><a id=to-content href=#content aria-label="Skip to Main Content"><span>Skip to Main Content</span>
+<kbd class=key aria-hidden=true>c</kbd>
+<span class=screening aria-hidden=true></span></a></nav><a id=logo href=https://francisliardet.com/ aria-label="In No Particular Order" aria-description=Homepage><svg id="logotype" width="616pt" aria-label="In No Particular Order"><text id="logotype__text" y="19.5pt" x="0">In No Particular Order</text></svg></a><details class=presentation id=top-nav><summary class=on-deck><span class="t t2">Navigation</span>
+<span class=menu-icon role=presentation></span></summary><nav tabindex=-1 aria-label=Top><details id=has-search class="presentation js-details" name=on-deck><summary class="on-deck srm" accesskey=q aria-labelledby=search-label aria-keyshortcuts=q><span id=search-label class="t t2 srt">Search</span></summary><div id=search class=on-hull><div role=presentation class="screening js-cgpn"></div></div><script src=https://francisliardet.com/pagefind/pagefind-ui.js type=text/javascript></script><script>let pageFindInitialized=!1;const initPageFind=function(){if(!pageFindInitialized){new PagefindUI({element:"#search",showImages:!1,translations:{placeholder:"Search"}});const e=document.querySelector(".pagefind-ui__search-input");e&&e.setAttribute("aria-label",e.getAttribute("placeholder")),pageFindInitialized=!0,document.removeEventListener("DOMContentLoaded",initPageFind)}};document.addEventListener("DOMContentLoaded",initPageFind)</script><noscript id=has-search-fallback class=on-hull><form id=duckduckgo class="form on-plank" name=x action=//duckduckgo.com/ role=search aria-label><input type=hidden value=francisliardet.com name=sites></input>
+<input type=hidden value=1 name=kh></input>
+<input type=hidden value=1 name=kn></input>
+<input type=hidden value=1 name=kac></input>
+<input class="ldots form__input" type=search placeholder=Search name=q role=searchbox></input>
+<button class=form__button type=submit aria-label=Search>
+<img src=https://duckduckgo.com/assets/logo_header.v109.svg alt role=presentation aria-hidden=true></button></form><div role=presentation class="screening js-cgpn"></div></noscript></details></nav><div id=top-nav-screen class="screening js-cpn" role=presentation aria-hidden=true></div></details></header><main id=page><header class=pagewidth><menu class=srm><a id=print-button class=hide href=javascript:window.print() role=button aria-label=Print><span class="t srt" role=tooltip>Print</span>
+</a><a id=navigatorShare href=#share role=button aria-label=Share><span class="t srt" role=tooltip>Share</span>
+</a><a id=copyPermalink class=hide href=javascript:navigator.clipboard.writeText(window.location.href) role=button aria-label="Copy URL"><span id=copy class="t srt" role=tooltip>Copy URL</span>
+<span id=isCopying style=display:none>Copying...</span>
+<span id=copyText style=display:none>Copy URL</span></a></menu><button id=back class=hide type=button onclick=history.back() aria-label="Go Back">
+<span class="t srt" role=tooltip>Go Back</span></button><details class=presentation aria-expanded=true id=has-breadcrumb open><summary id=breadcrumb tabindex=-1><span>Breadcrumb</span></summary><nav aria-labelledby=breadcrumb><ul role=presentation class=breadcrumb><li><a href=https://francisliardet.com/post/ aria-current=true>Post</a></li><li><a href aria-current=page tabindex=-1>Creating a Hydroponic Sensor Suite with ESP32</a></li></ul></nav></details></header><div id=top role=presentation></div><article id=main-article class="pagewidth rm" role=document aria-labelledby=title data-pagefind-body><header aria-labelledby=title><hgroup data-bionread-safe><h1 id=title data-pagefind-meta=title>Creating a Hydroponic Sensor Suite with ESP32</h1><p class=subtitle role=doc-subtitle>Hooking up a powerful array of sensors to an indoor NFT hydroponic system using an ESP32-based microcontroller.</p></hgroup><div id=doc-author class="textsw author"><a id=avatar class=sri href=https://francisliardet.com/author/francis-liardet/ aria-label="Francis Liardet"><img src=https://francisliardet.com/img/profile.webp alt="Francis Liardet">
+</a><a href=https://francisliardet.com/author/francis-liardet/ class=has-desc aria-label="Francis Liardet" aria-description="Busy starting yet another project">Francis Liardet</a></div><div class=date-has-label><time class=doc-publish-date datetime=2025-09-28T00:00:00+00:00 data-time-label="Published on">September 28, 2025</time><time class=doc-lastmod-date datetime=2025-10-24T10:16:36+13:00 data-time-label="Modified on">October 24, 2025</time></div></header><details class=presentation aria-expanded=true id=has-TableOfContents open><summary id=TableOfContents tabindex=-1><span>Table of Contents</span></summary><nav data-pagefind-body role=doc-toc><ul><li><a href=#the-problem>The Problem</a></li><li><a href=#the-solution>The Solution</a><ul><li><a href=#step-1-the-board>Step 1: The board</a></li><li><a href=#step-2-figuring-out-what-sensors-to-use>Step 2: Figuring out what sensors to use</a></li><li><a href=#step-3-designing-the-enclosure>Step 3: Designing the enclosure</a></li><li><a href=#step-4-software>Step 4: Software</a></li><li><a href=#step-5-final-assembly-and-testing>Step 5: Final assembly and testing</a></li><li><a href=#step-6-home-assistant-configuration>Step 6: Home Assistant Configuration</a></li></ul></li><li><a href=#final-thoughts--notes>Final Thoughts & Notes</a><ul><li><a href=#optional-improvements>Optional Improvements</a></li><li><a href=#gotchas-and-other-things-to-look-out-for>&ldquo;Gotchas&rdquo; and Other Things to Look Out For</a></li></ul></li><li><a href=#bill-of-materials>Bill of Materials</a><ul><li></li></ul></li><li><a href=#files>Files</a></li></ul></nav></details><section aria-labelledby=title id=content data-bionread-safe><figure class=fullwidth><video preload=metadata controls muted loop autoplay poster=false>
+<source src=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/hydroloop.webm type=video/webm>Your browser does not support the video element.</video></figure><figcaption>HAL 9000's green-thumbed cousin</figcaption><h2 id=the-problem>The Problem</h2><blockquote><blockquote><p><em>I&rsquo;m lazy.</em></p></blockquote></blockquote><p>Managing a small hydroponic system takes more time and effort than I originally signed up for.
+Mature plants transpire quickly, draining your reservoir. Their roots grow long, clogging up your drain pipes. Nutrient levels change before your run out of water, forcing an unexpected topup or dilution.</p><h2 id=the-solution>The Solution</h2><blockquote><blockquote><p><em>Couch-based electronic monitoring.</em></p></blockquote></blockquote><p>I thought it was about time I combined my passions of plants, electronics, and not wanting to get off my computer chair, to make a system that could report back on all the bits of information needed for a fully-remote monitoring system.</p><p>Enter Home Assistant, ESP32, and other assorted cheap Chinese sensor boards.</p><h3 id=step-1-the-board>Step 1: The board</h3><figure class="class param"><input id=fig-8fdc2db8ba0f586e42a5009952370525-1 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-1 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-1></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-1 class="marginpar abs"><strong>ESP32-S3 N16R8 </strong>Inserted into a matching expansion board</span><figure><a href=img12.webp data-dimbox data-dimbox-caption="ESP32-S3 N16R8"><img src=img12.webp alt="ESP32-S3 N16R8" title="ESP32-S3 N16R8" aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-1 loading=lazy></a></figure></figure><p>For this project I went with the ESP32-S3. It&rsquo;s newer, has USB-C, and an offensively bright RGB LED that I ended up diffusing through the 3D-printed enclosure for a proper nice status light.</p><p>To go with the board, I also purchased an expansion board to make hooking up the various components with dupont connectors super easy.</p><h3 id=step-2-figuring-out-what-sensors-to-use>Step 2: Figuring out what sensors to use</h3><p>Aliexpress seems to have an endless supply of new and interesting arduino-compatible sensors that I could possibly integrate. In fact if you haven&rsquo;t recently, I&rsquo;d definitely recommend spending some time just browsing. I find it great for inspiration.</p><p>The main things I wanted to measure in this setup were:</p><ul><li>Water flow rate</li><li>Reservoir water level</li><li>EC (Nutrient) level</li></ul><h4 id=flow-rate>Flow Rate</h4><p><input id=fig-8fdc2db8ba0f586e42a5009952370525-2 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-2 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-2></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-2 class=marginpar><a href=img11.webp data-dimbox data-dimbox-caption=OF05ZAT><img src=img11.webp alt=" OF05ZAT" title=OF05ZAT aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-2 loading=lazy>
+</a><strong>OF05ZAT </strong>The best (cheap) sensor I could find
+</span>I found a <a href=https://www.cabidigitallibrary.org/doi/full/10.5555/20203114132 target=_blank rel="external noopener noreferrer nofollow">paper published in 2018</a> which suggested that in an <a href=https://en.wikipedia.org/wiki/Nutrient_film_technique target=_blank rel="external noopener noreferrer nofollow">NFT</a> system, lower rates around <strong>20L/h</strong> were the most effective at delivering nutrients to plants.
+Although the study was performed on lettuce and I&rsquo;m growing chilis here, most other studies suggesting higher flow rates seemed to be performed in full immersion <a href=https://en.wikipedia.org/wiki/Deep_water_culture target=_blank rel="external noopener noreferrer nofollow">DWC</a> systems, so I decided to stick with the one designed for NFT and it hasn&rsquo;t done me wrong yet.
+A lower flow rate also seems to be far less prone to overflowing/flooding when the plants start to build up their thick root networks.</p><p>Finding a flow rate sensor that went low enough was challenging. Most sensors on Aliexpress seem to support a minimum flow rate of 1L/min (60L/hr), far above our target rate. The one I <a href=https://www.aliexpress.com/item/32811094935.html target=_blank rel="external noopener noreferrer nofollow">eventually settled on</a> seems to be manufactured for viscous fluids like milk or gasoline, but according to the <a href=https://www.aichitokei.net/wp/wp-content/uploads/of_z-eng-1.3.pdf target=_blank rel="external noopener noreferrer nofollow">spec sheet</a> of the original product this knockoff is impersonating, water seems to work too!</p><p><input id=fig-8fdc2db8ba0f586e42a5009952370525-3 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-3 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-3></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-3 class=marginpar><a href=img15.webp data-dimbox data-dimbox-caption="Bootleg voltage divider"><img src=img15.webp alt=" Bootleg voltage divider" title="Bootleg voltage divider" aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-3 loading=lazy>
+</a><strong>Bootleg voltage divider </strong>5v -> 3.3v
+</span>Unfortunately, the knockoff sensor didn&rsquo;t seem to match the datasheets 3V minimum running voltage as I wasn&rsquo;t able to get any pulses at all until I hooked it up to the expansion board&rsquo;s 5V supply. This meant I needed to drop the signal voltage down to something that wouldn&rsquo;t fry my poor ESP32, a simple 100K$\Omega$ / 200K$\Omega$ voltage divider on a slice of protoboard seemed to do the trick nicely.</p><h4 id=reservoir-water-level>Reservoir Water level</h4><p><input id=fig-8fdc2db8ba0f586e42a5009952370525-4 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-4 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-4></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-4 class=marginpar><a href=img13.webp data-dimbox data-dimbox-caption=TL-136><img src=img13.webp alt=" TL-136" title=TL-136 aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-4 loading=lazy>
+</a><strong>TL-136 </strong>Unexpectedly bulky
+</span>I ended up hooking up two different sensors for this. The first sensor was a simple but reliable float switch. Basically an electronic version of what you might find in your toilet&rsquo;s cistern. It only supplies a binary ON/OFF reading, but this is great for triggering a low-water warning when water drops below a fixed point in the reservoir. Being a &ldquo;dumb&rdquo; sensor also means that it&rsquo;s probably the most reliable sensor I have in the box.</p><p>My second water level sensor is a little more complex. The TL‑136 Liquid Level Sensor draws a variable amount of current depending on the pressure (height) of water above it when submerged. With the help of a current sensing circuit we can read this current and use it to fairly accurately detect how much water is left in the reservoir. The sensor uses a minimum current of 4ma, so just map your 0->100% to whatever current value you measure when the tank is completely full.</p><p>Another potential option I investigated was a cheap <a href=https://www.dfrobot.com/product-1935.html target=_blank rel="external noopener noreferrer nofollow">waterproof ultrasonic sensor</a>. I eventually decided against it though because of the potential need to deal with reflections and added complexity. However, if I were to make a smaller hydroponic system in the future this would be the go as the TL‑136 is basically just a giant rod of stainless steel.</p><h4 id=ec-nutrient-level>EC (Nutrient) Level</h4><p><input id=fig-8fdc2db8ba0f586e42a5009952370525-5 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-5 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-5></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-5 class=marginpar><a href=img14.webp data-dimbox data-dimbox-caption="Analog TDS Sensor"><img src=img14.webp alt=" Analog TDS Sensor" title="Analog TDS Sensor" aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-5 loading=lazy>
+</a><strong>Analog TDS Sensor </strong>Worth the extra $$
+</span>EC is measured using a TDS (total dissolved solids) sensor. There are a couple of different options, but I&rsquo;d recommend getting the more expensive DFRobot one. I originally bought a brandless version, but switched it out after wildly inaccurate results and hours of tweaking software trying to get a stable reading.</p><p>As a bonus, the included PCB comes with a handy 3-pin dupont connector that plugs right into the ESP32&rsquo;s expansion board.</p><h5 id=one-small-caveat>One small caveat:</h5><p>The datasheet mentions only being able to measure up to ~2000uS EC (1000 ppm), but I was able to get accurate readings up to around ~2300uS. This is a bit below my target EC value for chilis, but should work fine for any leafy greens or lettuces. For accurate ad-hoc readings and calibration I ended up buying a <a href=https://bluelab.com/products/bluelab-conductivity-pen target=_blank rel="external noopener noreferrer nofollow">Bluelab EC Pen</a> which worked great. You&rsquo;ll ideally either have something like this or a calibration solution with a known EC to determine your sensor&rsquo;s K-value. This is used for calibration and defaults to 1.0 (see comments in code below).</p><h5 id=a-note-on-ph>A note on PH:</h5><p>I was initially going to include a PH sensor, but semi-regular calibration is required for accurate results, especially if the probe is left in solution for long periods of time. I didn&rsquo;t want any extra regular maintenance other than occasionally filling up the tank, so I gave up on the idea and settled for a bottle of PH solution which should last a few hundred tests.</p><h4 id=additional-non-sensor-boards>Additional Non-sensor Boards</h4><h6 id=dc-boost-module-required>DC Boost Module (required)</h6><p>The liquid level sensor runs off 12v, so you&rsquo;ll need this step up module to bring your 5v input to 12v.</p><h6 id=current-sensor-required>Current Sensor (required)</h6><p>Again needed for the liquid level sensor so you can read how much current it&rsquo;s drawing. I did see other variants of the sensor that output voltage instead, so you could pick one of those up instead and skip this.</p><h6 id=ads1115-optional>ADS1115 (optional)</h6><p>An alternative to the ESP32&rsquo;s inbuilt ADC. I saw people reporting more accurate / less noisy results from a dedicated converter so I thought &ldquo;why not&rdquo;. This is absolutely optional though and the default ADC seemed to work perfectly fine too, just make sure you set the attenuation in ESPHome to 12db to capture the full 2.3v output voltage.</p><h3 id=step-3-designing-the-enclosure>Step 3: Designing the enclosure</h3><p>Case design was done in Fusion360. I started by sketching out the perimeters and mounting holes for each sensor I planned to include. The sketches were then grouped into a rough box shape and sufficient margin was added, allowing for any cables to be easily added or removed. The perimeter walls came next, along with holes to seal the box shut and cutouts for the DC barrel jack + various sensor ports.</p><figure><input id=fig-8fdc2db8ba0f586e42a5009952370525-6 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-6 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-6></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-6 class="marginpar abs">The (mostly) complete 2D sketch of PCBs and perimeter walls</span><figure><a href=img10.webp data-dimbox data-dimbox-caption="The (mostly) complete 2D sketch of PCBs and perimeter walls"><img src=img10.webp aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-6 loading=lazy></a></figure></figure><p>On the topic of sensor ports, the case includes slots for sliding in a small prototype board mounted vertically. Onto this I added various female JST connectors, making it much easier to add/remove sensors while testing. Having detachable connectors like this also minimises disturbance of the wire spaghetti inside, preventing loose dupont cables causing headaches down the line.</p><figure><input id=fig-8fdc2db8ba0f586e42a5009952370525-7 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-7 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-7></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-7 class="marginpar abs">The final 3D model</span><figure><a href=img8.webp data-dimbox data-dimbox-caption="The final 3D model"><img src=img8.webp aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-7 loading=lazy></a></figure></figure><h3 id=step-4-software>Step 4: Software</h3><p>I already had an existing <a href=https://www.home-assistant.io/ target=_blank rel="external noopener noreferrer nofollow">Home Assistant</a> server set up, so flashing my ESP32 with <a href=https://esphome.io/ target=_blank rel="external noopener noreferrer nofollow">ESPHome</a> was a no-brainer.</p><p>There are plenty of in-depth tutorials online on how to set those up so I won&rsquo;t delve into it here. When you&rsquo;re ready, this is the final code I ended up using for my suite of sensors. Make sure to fill in the encryption key and OTA password:</p><details><summary><h6 id=expand-to-see-code>Expand to see code</h6></summary><div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>esphome</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>hydrosensorbox-v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>friendly_name</span><span class=p>:</span><span class=w> </span><span class=l>HydroSensorBox V1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Start slowly pulsing the status light</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>on_boot</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>light.turn_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>my_light</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Slow Pulse&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>red</span><span class=p>:</span><span class=w> </span><span class=m>0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>green</span><span class=p>:</span><span class=w> </span><span class=m>1.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>blue</span><span class=p>:</span><span class=w> </span><span class=m>0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>brightness</span><span class=p>:</span><span class=w> </span><span class=m>60</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>esp32</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>board</span><span class=p>:</span><span class=w> </span><span class=l>esp32-s3-devkitc-1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>framework</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>esp-idf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=l>recommended</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Log control</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>logger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>sensor</span><span class=p>:</span><span class=w> </span><span class=l>NONE</span><span class=w> </span><span class=c># Comment out to enable verbose logging</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>switch</span><span class=p>:</span><span class=w> </span><span class=l>NONE</span><span class=w> </span><span class=c># &#34;  &#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>binary_sensor</span><span class=p>:</span><span class=w> </span><span class=l>NONE</span><span class=w> </span><span class=c># &#34; &#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Enable Home Assistant API</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>api</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>encryption</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;&lt;REDACTED&gt;&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>ota</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>esphome</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>password</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;&lt;REDACTED&gt;&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>wifi</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ssid</span><span class=p>:</span><span class=w> </span>!<span class=l>secret wifi_ssid</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>password</span><span class=p>:</span><span class=w> </span>!<span class=l>secret wifi_password</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>one_wire</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>gpio</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pin</span><span class=p>:</span><span class=w> </span><span class=l>GPIO6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>i2c</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sda</span><span class=p>:</span><span class=w> </span><span class=l>GPIO8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>scl</span><span class=p>:</span><span class=w> </span><span class=l>GPIO9</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>scan</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>bus_a</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>ads1115</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>address</span><span class=p>:</span><span class=w> </span><span class=m>0x48</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>light</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>status_led</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Switch state&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>internal</span><span class=p>:</span><span class=w> </span><span class=kc>True</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pin</span><span class=p>:</span><span class=w> </span><span class=l>GPIO5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>on_turn_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>light.turn_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>my_light</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Fast Pulse&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>red</span><span class=p>:</span><span class=w> </span><span class=m>1.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>green</span><span class=p>:</span><span class=w> </span><span class=m>0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>blue</span><span class=p>:</span><span class=w> </span><span class=m>0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>brightness</span><span class=p>:</span><span class=w> </span><span class=m>60</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>esp32_rmt_led_strip</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pin</span><span class=p>:</span><span class=w> </span><span class=l>GPIO48</span><span class=w> </span><span class=c># This should match the &#34;internal&#34; GPIO used for the onboard RGB led</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chipset</span><span class=p>:</span><span class=w> </span><span class=l>WS2812</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>rgb_order</span><span class=p>:</span><span class=w> </span><span class=l>GRB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>num_leds</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>my_light</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Status Light&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>effects</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>pulse</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Slow Pulse&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>transition_length</span><span class=p>:</span><span class=w> </span><span class=l>1500ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>2000ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>min_brightness</span><span class=p>:</span><span class=w> </span><span class=m>20</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>max_brightness</span><span class=p>:</span><span class=w> </span><span class=m>100</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>pulse</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Fast Pulse&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>transition_length</span><span class=p>:</span><span class=w> </span><span class=l>500ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>500ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>min_brightness</span><span class=p>:</span><span class=w> </span><span class=m>20</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>max_brightness</span><span class=p>:</span><span class=w> </span><span class=m>100</span><span class=l>%</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>pulse</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Instant&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>transition_length</span><span class=p>:</span><span class=w> </span><span class=l>0ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>0ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>binary_sensor</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>gpio</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>float_switch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Reservoir Float Switch&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>number</span><span class=p>:</span><span class=w> </span><span class=l>GPIO7</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>mode</span><span class=p>:</span><span class=w> </span><span class=l>INPUT_PULLUP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>inverted</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>filters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Small filter, to debounce the switch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>delayed_on</span><span class=p>:</span><span class=w> </span><span class=l>25ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>delayed_off</span><span class=p>:</span><span class=w> </span><span class=l>25ms</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>sensor</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>pulse_meter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pin</span><span class=p>:</span><span class=w> </span><span class=l>GPIO17</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Flow Rate&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>unit_of_measurement</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;L/hr&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>accuracy_decimals</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>internal_filter</span><span class=p>:</span><span class=w> </span><span class=l>20ms</span><span class=w> </span><span class=c># Around half the minimum expected time between pulses</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># 6.344827586206897 is my particular flow sensor&#39;s &#34;mls per pulse&#34;, yours may differ</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># I found it by measuring (with a scale) how many mls were pumped over a minute, and compared it to the unfiltered output of the pulse_meter sensor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>filters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>multiply</span><span class=p>:</span><span class=w> </span>!<span class=l>lambda &#39;return ((6.344827586206897 / 1000.0) * 60.0);&#39;</span><span class=w> </span><span class=c># to find litres per pulse, per hour</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>exponential_moving_average</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>alpha</span><span class=p>:</span><span class=w> </span><span class=m>0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>send_every</span><span class=p>:</span><span class=w> </span><span class=m>60</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>dallas_temp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Water Temperature&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>water_temp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>unit_of_measurement</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;°C&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>internal</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>filters</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>sliding_window_moving_average</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>window_size</span><span class=p>:</span><span class=w> </span><span class=m>6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>send_every</span><span class=p>:</span><span class=w> </span><span class=m>6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Convert measured voltage into EC</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># https://github.com/DFRobot/GravityTDS/blob/master/GravityTDS.cpp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># only accurate up to ~2EC</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>template</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;TDS (EC)&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>water_tds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>icon</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;hass:water-opacity&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>unit_of_measurement</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;uS&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>accuracy_decimals</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>lambda</span><span class=p>:</span><span class=w> </span><span class=p>|-</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      return (
+</span></span></span><span class=line><span class=cl><span class=sd>        (
+</span></span></span><span class=line><span class=cl><span class=sd>          (
+</span></span></span><span class=line><span class=cl><span class=sd>            133.42 * id(ads1115_adc).state * id(ads1115_adc).state * id(ads1115_adc).state
+</span></span></span><span class=line><span class=cl><span class=sd>            - 255.86 * id(ads1115_adc).state * id(ads1115_adc).state
+</span></span></span><span class=line><span class=cl><span class=sd>            + 857.39 * id(ads1115_adc).state
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>          * 0.89202  // K-value (magic number calibration)
+</span></span></span><span class=line><span class=cl><span class=sd>        )
+</span></span></span><span class=line><span class=cl><span class=sd>        / 
+</span></span></span><span class=line><span class=cl><span class=sd>        (
+</span></span></span><span class=line><span class=cl><span class=sd>          1.0 + 0.02 * (id(water_temp).state - 25.0)  // Adjust for temperature
+</span></span></span><span class=line><span class=cl><span class=sd>        )
+</span></span></span><span class=line><span class=cl><span class=sd>      );</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>filters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>exponential_moving_average</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>alpha</span><span class=p>:</span><span class=w> </span><span class=m>0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Water level sensor I2C read</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>ina226</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>address</span><span class=p>:</span><span class=w> </span><span class=m>0x40</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>shunt_resistance</span><span class=p>:</span><span class=w> </span><span class=m>0.1</span><span class=w> </span><span class=l>ohm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>max_current</span><span class=p>:</span><span class=w> </span><span class=l>1A</span><span class=w> </span><span class=c>#0.02A</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># adc time used for both, Bus Voltage and Shunt Voltage</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>adc_time</span><span class=p>:</span><span class=w> </span><span class=l>140us</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>adc_averaging</span><span class=p>:</span><span class=w> </span><span class=m>128</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>5s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>current</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INA226 Current&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>current_sensor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>accuracy_decimals</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>unit_of_measurement</span><span class=p>:</span><span class=w> </span><span class=l>mA</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filters</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>multiply</span><span class=p>:</span><span class=w> </span><span class=m>1000</span><span class=w> </span><span class=c># Amperes -&gt; mA</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>sliding_window_moving_average</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>window_size</span><span class=p>:</span><span class=w> </span><span class=m>12</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>send_every</span><span class=p>:</span><span class=w> </span><span class=m>12</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Standalone I2C ADC</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>ads1115</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>multiplexer</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;A0_GND&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>gain</span><span class=p>:</span><span class=w> </span><span class=m>4.096</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;ADS1115 Channel A0-GND&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>ads1115_adc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>5s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>filters</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>sliding_window_moving_average</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>window_size</span><span class=p>:</span><span class=w> </span><span class=m>6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>send_every</span><span class=p>:</span><span class=w> </span><span class=m>6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Human-readable water level derived </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>platform</span><span class=p>:</span><span class=w> </span><span class=l>template</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Reservoir Water Level&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>icon</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;hass:water-percent&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>unit_of_measurement</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;%&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>accuracy_decimals</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># 4ma @ min water level, 4.9ma @ max water level</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>lambda</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;return (100 * ( (id(current_sensor).state - 4.0) / (4.9 - 4.0)));&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>update_interval</span><span class=p>:</span><span class=w> </span><span class=l>60s</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></details><h3 id=step-5-final-assembly-and-testing>Step 5: Final assembly and testing</h3><figure class=fullwidth><img src=img16.webp aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-9 loading=lazy><figcaption id=fig-8fdc2db8ba0f586e42a5009952370525-9>The fully assembled sensor suite (with and without dupont spaghetti)</figcaption></figure><h4 id=pin-connections>Pin connections</h4><p>All pins are connected to ESP32&rsquo;s expansion board unless specified.</p><table><thead><tr><th>Pin</th><th>Destination</th></tr></thead><tbody><tr><td>GPIO 6</td><td>Temperature Sensor Signal</td></tr><tr><td>GPIO 7</td><td>Float Switch (other wire to GND)</td></tr><tr><td>GPIO 8</td><td>INA226 SDA, ADS1115 SDA</td></tr><tr><td>GPIO 9</td><td>INA226 SCL, ADS1115 SCL</td></tr><tr><td>GPIO 17</td><td>Flow Sensor Signal (via voltage divider)</td></tr><tr><td>TDS A (<em>on TDS sensor</em>)</td><td>ADS1115 A0 (if using ACS1115)</td></tr><tr><td>&mdash;</td><td>&mdash;</td></tr><tr><td>+5V</td><td>DC Step Up, Flow Sensor,</td></tr><tr><td>+3.3V</td><td>All other VCC pins</td></tr><tr><td>GND</td><td>All other GND pins</td></tr></tbody></table><h3 id=step-6-home-assistant-configuration>Step 6: Home Assistant Configuration</h3><figure><input id=fig-8fdc2db8ba0f586e42a5009952370525-10 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-10 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-10></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-10 class="marginpar abs">My sensor suite in Home Assistant (along with controls for a tower fan, and two AC plugs for lights and pump)</span><figure><a href=img17.webp data-dimbox data-dimbox-caption="My sensor suite in Home Assistant (along with controls for a tower fan, and two AC plugs for lights and pump)"><img src=img17.webp aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-10 loading=lazy></a></figure></figure><p>This post is already becoming too big so to save some of the babble, here&rsquo;s a rundown of what I did with Home Assistant. A quick google search should get you pointed in the right direction if you&rsquo;d like to integrate any of these yourself.</p><ul><li>Set up helpers in home assistant to average data values over time (e.g. Flow rate mean over last hour). I needed to set this and others up in the configuration.yaml file.</li><li>Set up alerts in home assistant to change status LED colour & send push notifications when flow rate drops or float switch is triggered</li><li>Added smart plugs for scheduling lights and turning off pump in an emergency</li><li>Added basic IoT tower fan for airflow and set up a simple 30min on, 30min off timer</li></ul><figure><input id=fig-8fdc2db8ba0f586e42a5009952370525-11 class=marginpar-ctrl type=checkbox aria-controls=the-fig-8fdc2db8ba0f586e42a5009952370525-11 hidden>
+<label for=fig-8fdc2db8ba0f586e42a5009952370525-11></label><span id=the-fig-8fdc2db8ba0f586e42a5009952370525-11 class="marginpar abs">Near-zero water consumption with lights off. An example of the kind of insight Home Assistant can provide with your sensor data</span><figure><a href=img19.webp data-dimbox data-dimbox-caption="Near-zero water consumption with lights off. An example of the kind of insight Home Assistant can provide with your sensor data"><img src=img19.webp aria-describedby=fig-8fdc2db8ba0f586e42a5009952370525-11 loading=lazy></a></figure></figure><h2 id=final-thoughts--notes>Final Thoughts & Notes</h2><p>I&rsquo;ve been using the sensor suite for a few weeks now and I&rsquo;ve got to say, I&rsquo;m happy with the end result!</p><p>The peace of mind that comes with remotely being able to check in on my plants is well worth the effort. I&rsquo;m no longer having to physically check the reservoir every day. I can immediately tell if there&rsquo;s a blockage or issue with the pump. I get push notifications on my phone when things go wrong, but if I miss those, the box flashes bright red to catch my attention.</p><p>The data stored within Home Assistant is great for identifying trends</p><p>I&rsquo;d say it&rsquo;s a fun and relatively inexpensive project if you&rsquo;re looking for something to add on to your exising small-scale hydro setup.</p><h3 id=optional-improvements>Optional Improvements</h3><p>Use a SMD hot air gun to de-solder the three status LEDs on the ESP32. The red power LED is constantly on during operation and shows through the white diffuser on the cover panel. Take it off to remedy this for a cleaner appearance.</p><h3 id=gotchas-and-other-things-to-look-out-for>&ldquo;Gotchas&rdquo; and Other Things to Look Out For</h3><ul><li><p>On my ESP32&rsquo;s expansion board the outer line of GPIO connections (with the matching 3.3V/GND pins) is offset by 1. Double check the connections when you&rsquo;re plugging things in.</p></li><li><p>You&rsquo;ll notice in my images that I&rsquo;ve only got one M3 bolt connected to my INA226 instead of two. This is because I used measurements for a completely different board by mistake. I&rsquo;ll remedy this and add a couple more M3 case screws in a second revision of the 3d model.</p></li><li><p>When making the 5v->3.3v voltage divider, I originally tried out a 10K$\Omega$ + 20K$\Omega$ setup as this seemed to be most commonly suggested. In practice, it lowered my signal voltage so much that it no longer registered in ESPHome, and swapping out for larger resistors fixed this. I honestly don&rsquo;t why this happened, but I&rsquo;m guessing it&rsquo;s something to do with there being so little current on the flow meter&rsquo;s signal line.</p></li></ul><h2 id=bill-of-materials>Bill of Materials</h2><table><thead><tr><th>Item</th><th>Link</th><th></th></tr></thead><tbody><tr><td>ESP32 S3 Development Board (N16R8)</td><td><a href=https://www.aliexpress.com/item/1005008209644199.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005008209644199.html</a></td><td></td></tr><tr><td>ESP32 S3 Expansion Board</td><td><a href=https://www.aliexpress.com/item/1005008101989976.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005008101989976.html</a></td><td></td></tr><tr><td>Current Sensor</td><td><a href=https://www.aliexpress.com/item/32741230177.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/32741230177.html</a></td><td></td></tr><tr><td>I2C Analogue to Digital Converter</td><td><a href=https://www.aliexpress.com/item/1005007628692389.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005007628692389.html</a></td><td></td></tr><tr><td>Liquid Level Sensor</td><td><a href=https://www.aliexpress.com/item/1005007170834043.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005007170834043.html</a></td><td></td></tr><tr><td>TDS / EC Nutrient Level Sensor</td><td><a href=https://www.aliexpress.com/item/32844394039.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/32844394039.html</a></td><td></td></tr><tr><td>Flow Rate Sensor</td><td><a href=https://www.aliexpress.com/item/32811094935.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/32811094935.html</a></td><td></td></tr><tr><td>One-wire Temperature Sensor</td><td><a href=https://www.aliexpress.com/item/4000143479592.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/4000143479592.html</a></td><td></td></tr><tr><td>5V -> 12V Boost Converter</td><td><a href=https://www.aliexpress.com/item/32582625142.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/32582625142.html</a></td><td></td></tr><tr><td>Float Level Switch</td><td><a href=https://www.aliexpress.com/item/1005005552786185.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005005552786185.html</a></td><td></td></tr><tr><td>2x8cm Protoboard</td><td><a href=https://www.aliexpress.com/item/1005007170017323.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005007170017323.html</a></td><td></td></tr><tr><td>Power Supply Adapter</td><td><a href=https://www.aliexpress.com/item/1005007210125031.html target=_blank rel="external noopener noreferrer nofollow">https://www.aliexpress.com/item/1005007210125031.html</a></td><td></td></tr></tbody></table><h4 id=also-needed>Also Needed</h4><table><thead><tr><th>Item</th></tr></thead><tbody><tr><td>M3 & M2.5 brass heat-set inserts</td></tr><tr><td>Assorted JST PH/XH/SM connectors & crimping tool</td></tr><tr><td>M3 & M2.5 bolts</td></tr><tr><td>Assorted resistors</td></tr></tbody></table><h2 id=files>Files</h2></section><footer><nav id=keywords aria-label=Tags><span>Tags:&nbsp;</span><ul class=delimiter role=presentation><li><a href=https://francisliardet.com/tags/esp32/>Esp32</a></li><li><a href=https://francisliardet.com/tags/hydroponics/>Hydroponics</a></li><li><a href=https://francisliardet.com/tags/3d-printing/>3d Printing</a></li><li><a href=https://francisliardet.com/tags/plants/>Plants</a></li><li><a href=https://francisliardet.com/tags/home-assistant/>Home Assistant</a></li></ul></nav></footer></article><hr class=hide style="margin:1in 0"><div id=contentinfo class=pagewidth role=contentinfo data-pagefind-ignore=all><div id=colophon style=display:none aria-live=polite><strong class=section-title>Colophon</strong><div><div id=qr role=img aria-label="QR code"></div><div class=verbose><div class=has-aria-label-top aria-label="Creating a Hydroponic Sensor Suite with ESP32"><span>https://francisliardet.com/post/hydroponic_sensor_suite_esp32/</span></div><div><span>This page is built on: </span><time datetime=2025-10-23T21:17:07+00:00>2025-10-23 21:17</time></div><div><span>This page is accessed on: </span><time id=time-stamp></time></div></div></div></div><div id=has-timeline><strong class=section-title>Redaction History</strong><ol aria-label="Redaction History"><li><time datetime=2025-09-28T00:00:00+00:00>September 28, 2025</time>
+<span>(Published)</span></li><li><time datetime=2025-10-24T10:16:36+13:00>October 24, 2025</time>
+<span>(Modified)</span></li></ol><p>Some information might changes over time, we keep redaction up to date.</p></div><details class=presentation aria-expanded=true id=has-share open><summary id=share tabindex=-1><span>Share</span></summary><nav aria-labelledby=share><ul role=presentation class="share srm"><li id=has-mastodon><form class=form id=mastodon action=//sharetomastodon.github.io/ target=_blank rel="noopener noreferrer"><input id=mastodonTitle type=hidden name=title value="Creating a Hydroponic Sensor Suite with ESP32">
+<input id=mastodonPermalink type=hidden name=url value=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/>
+<input id=mastodonText type=hidden name=text value="Creating a Hydroponic Sensor Suite with ESP32 https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" disabled>
+<input id=mastodonInstance type=url class="ldots form__input" placeholder="Enter Mastodon instance (https://www.example.com)" aria-label="Mastodon instance URL">
+<button class=form__button type=submit aria-label="Share on Mastodon">
+<i class="icon mastodon sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Mastodon</span></button></form></li><li><a href="mailto:?subject=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&body=https%3a%2f%2ffrancisliardet.com%2fpost%2fhydroponic_sensor_suite_esp32%2f" role=button aria-label="Share on Email"><i class="email sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Email</span></a></li><li><a href="whatsapp://send?text=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32%20https%3a%2f%2ffrancisliardet.com%2fpost%2fhydroponic_sensor_suite_esp32%2f" role=button aria-label="Share on Whatsapp"><i class="whatsapp sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Whatsapp</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://telegram.me/share/url?text=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Telegram in new tab"><i class="telegram sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Telegram</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://bsky.app/intent/compose?text=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Bluesky in new tab"><i class="bluesky sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Bluesky</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://facebook.com/sharer/sharer.php?u=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Facebook in new tab"><i class="facebook sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Facebook</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://news.ycombinator.com/submitlink?u=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;t=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32" role=button aria-label="Share on Hackernews in new tab"><i class="hackernews sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Hackernews</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;title=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;summary=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;source=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Linkedin in new tab"><i class="linkedin sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Linkedin</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://pinterest.com/pin/create/button/?url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;media=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;description=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32" role=button aria-label="Share on Pinterest in new tab"><i class="pinterest sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Pinterest</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://reddit.com/submit/?url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;resubmit=true&amp;title=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32" role=button aria-label="Share on Reddit in new tab"><i class="reddit sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Reddit</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;caption=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;content=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/&amp;canonicalUrl=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Tumblr in new tab"><i class="tumblr sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Tumblr</span></a></li><li><a rel="noopener noreferrer" target=_blank href="http://vk.com/share.php?title=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Vk in new tab"><i class="vk sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Vk</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://twitter.com/intent/tweet/?text=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32&amp;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/" role=button aria-label="Share on Twitter in new tab"><i class="twitter sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Twitter</span></a></li><li><a rel="noopener noreferrer" target=_blank href="https://www.xing.com/app/user?op=share;url=https://francisliardet.com/post/hydroponic_sensor_suite_esp32/;title=Creating%20a%20Hydroponic%20Sensor%20Suite%20with%20ESP32" role=button aria-label="Share on Xing in new tab"><i class="xing sri" aria-hidden=true></i>
+<span class="t srt" role=tooltip>Share on Xing</span></a></li></ul></nav></details></div><div class=pagewidth><noscript id=noGiscus><center role=alert>Giscus require Javascript and LocalStorage to be enable.</center></noscript><div id=noDOMGiscus class=hide><center role=alert>Giscus require Javascript and LocalStorage to be enable.</center></div><script src=https://giscus.app/client.js data-repo=francisliardet/francisliardet.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkzNTE5NzIzNA==" data-category=Announcements data-category-id=DIC_kwDOAhkRMs4Cv-78 data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div><hr class=hide><footer id=main-footer><div class="column column--multicols pagewidth" style=--multicols:2><div id=main-footer-primary><p><strong>Impressum</strong></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div><div id=main-footer-secondary class=column style=--col:10rem><div><p><strong>Example Links</strong></p><ul><li><a href=#>Example Link 1</a></li><li><a href=#>Example Link 2</a></li><li><a href=#>Example Link 3</a></li><li><a href=#>Example Link 4</a></li></ul></div><div><p><strong>More Links</strong></p><ul><li><a href=#>More Link 1</a></li><li><a href=#>More Link 2</a></li><li><a href=#>More Link 3</a></li></ul></div></div></div><div id=unified-footer><p id=license>Copyleft 2025 © Francis Liardet</p></div></footer></main><footer id=body-footer class=pagewidth style=display:none><div id=background-footer class="background hide" role=presentation aria-hidden=true><div class=grain hidden></div></div><div id=focusMode></div><details id=has-a11y class="presentation js-details hide" name=on-deck aria-haspopup=true aria-labelledby=has-a11y-summary><summary id=has-a11y-summary accesskey=a aria-keyshortcuts=a><span>&nbsp;Accessibility</span>
+<kbd class=key aria-hidden=true>a</kbd></summary><fieldset id=a11y role=region aria-label=Accessibility data-i18n-optimizesr="Screen Reader Optimization" data-i18n-optimizesrdesc="Optimize display and resources for screen reader users who navigate with a pointer device." data-i18n-colorsettings="Color Settings" data-i18n-darkmode="Dark Mode" data-i18n-light=Light data-i18n-dark=Dark data-i18n-contrast=Contrast data-i18n-lesscontrast=Low data-i18n-morecontrast=High data-i18n-defaultcontrast=Default data-i18n-colorpalette="Color Palette" data-i18n-defaultcolor=Default data-i18n-deuteranopia=Deuteranopia data-i18n-protanopia=Protanopia data-i18n-tritanopia=Tritanopia data-i18n-monochrome=Monochrome data-i18n-fontsize="Font Size" data-i18n-baselinestretch="Baseline Stretch" data-i18n-opendyslexic="Use OpenDyslexic Font" data-i18n-menucontrols="Accessibility Menu Controls" data-i18n-save=Save data-i18n-reset=Reset data-i18n-close=Close data-i18n-bionread="BionRead Mode" data-i18n-focusmode="Focus Mode" data-i18n-nolocalstorage="LocalStorage is not available in your browser. Settings won't be saved."></fieldset><div class="screening js-cpn" role=presentation aria-hidden=true></div></details><div id=useBionRead class=sri></div><nav aria-label=Bypass><a id=to-top class=srm href=#top title="To Content Top" accesskey=c aria-keyshortcuts=c aria-label="To Content Top"><span class="t srt">To Content Top</span>
+<kbd class=key aria-hidden=true>c</kbd></a></nav></footer><div id=bionReadSnapshot hidden></div><div id=background-body role=presentation aria-hidden=true><div class=grain hidden></div><div id=dwclock hidden><div id=min><div class=hand></div></div><div id=hour><div class=hand></div></div></div></div></html>

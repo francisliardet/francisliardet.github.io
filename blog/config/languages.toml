@@ -1,0 +1,10 @@
+[en]
+    contentDir = 'content/en'
+    disabled = false
+    languageCode = 'en-GB'
+    languageDirection = 'ltr'
+    languageName = 'English'
+    [en.pagination]
+        disableAliases = false
+        pagerSize = 12
+        path = 'page'
