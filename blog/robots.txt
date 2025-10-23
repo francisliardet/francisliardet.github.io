@@ -1,4 +1,4 @@
-Sitemap: https://francisliardet.com/sitemap.xml
+Sitemap: https://francisliardet.com/blog/sitemap.xml
 User-agent: *
 Disallow:
 User-agent: AI2Bot
